@@ -20,6 +20,9 @@ end
 if test -d $HOME/.poetry/bin
     set -gx PATH $PATH $HOME/.poetry/bin
 end
+if test -d $HOME/bin
+    set -gx PATH $PATH $HOME/bin
+end
 
 if test -f $HOME/.local.fish
      source $HOME/.local.fish
