@@ -109,11 +109,6 @@ function TrimWhiteSpace()
   ''
 endfunction
 
-autocmd FileWritePre * call TrimWhiteSpace()
-autocmd FileAppendPre * call TrimWhiteSpace()
-autocmd FilterWritePre * call TrimWhiteSpace()
-autocmd BufWritePre * call TrimWhiteSpace()
-
 " fzf
 nnoremap <leader>p :Files<cr>
 nnoremap <leader>o :GFiles<cr>
