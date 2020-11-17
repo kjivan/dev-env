@@ -91,7 +91,7 @@ nmap [h <Plug>(GitGutterPrevHunk)
 " settings
 set relativenumber
 set number
-set list listchars=tab:▸-,trail:⊡
+set list listchars=tab:▸-,trail:.,extends:>
 set showmatch
 set incsearch ignorecase smartcase
 set noswapfile
@@ -102,6 +102,17 @@ set iskeyword+=-
 
 filetype plugin on
 autocmd FileType cpp setlocal shiftwidth=4 softtabstop=4 tabstop=4 expandtab
+
+" remove trailing spaces
+function TrimWhiteSpace()
+  %s/\s*$//
+  ''
+endfunction
+
+autocmd FileWritePre * call TrimWhiteSpace()
+autocmd FileAppendPre * call TrimWhiteSpace()
+autocmd FilterWritePre * call TrimWhiteSpace()
+autocmd BufWritePre * call TrimWhiteSpace()
 
 " fzf
 nnoremap <leader>p :Files<cr>
