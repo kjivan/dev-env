@@ -28,6 +28,7 @@ Plug 'idanarye/vim-vebugger'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-surround'
+Plug 'cohama/lexima.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'luochen1990/rainbow'
 
