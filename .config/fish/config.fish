@@ -132,6 +132,7 @@ end
 alias g='git'
 alias gs='git status --short --branch'
 alias gst='git stash'
+alias gf='git fetch'
 alias gco='git checkout'
 alias gcop='git checkout --patch'
 alias gr='git reset'
