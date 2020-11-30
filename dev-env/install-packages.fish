@@ -26,11 +26,12 @@ ccze \
 git \
 git-flow \
 gitui \
-github/gh/gh \
+gh \
 golang \
 jq \
 python3 \
 node \
+nvm \
 yarn \
 netlify-cli \
 now-cli \
