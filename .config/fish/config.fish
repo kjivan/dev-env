@@ -35,7 +35,7 @@ set -xg EDITOR $VISUAL
 set -xg GIT_EDITOR $VISUAL
 
 # dev-env git
-alias dg="/usr/bin/git --git-dir=$HOME/.dev-env.git/ --work-tree=$HOME"
+alias dg="git --git-dir=$HOME/.dev-env.git/ --work-tree=$HOME"
 
 # fish editing
 alias reload="source $HOME/.config/fish/config.fish"
@@ -150,7 +150,7 @@ alias gup='git stash; git pull; git stash pop'
 alias gps='git push'
 alias gd='git diff'
 alias gdc='git diff --cached'
-alias gl='git log --abbrev-commit --pretty=oneline'
+alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gld='git log --pretty=format:"%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s" --date=short'
 alias glt='git log --pretty=format:"%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s"'
 alias gg='git log --graph --decorate --oneline --simplify-by-decoration'
