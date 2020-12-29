@@ -169,11 +169,12 @@ alias nre='npm run e2e'
 alias acid-test-gyp='curl -sL https://github.com/nodejs/node-gyp/raw/master/macOS_Catalina_acid_test.sh | bash'
 
 # Gradle
-alias grcb='./gradlew clean build'
-alias grcbp='./gradlew clean build publishToMavenLocal'
-alias grcbr='./gradlew clean bootrun'
-alias grbr='./gradlew bootrun'
-alias grns='./gradlew npmStart'
+alias grd='./gradlew'
+alias grdcb='./gradlew clean build'
+alias grdcbp='./gradlew clean build publishToMavenLocal'
+alias grdcbr='./gradlew clean bootrun'
+alias grdbr='./gradlew bootrun'
+alias grdns='./gradlew npmStart'
 
 # Docker
 alias d='docker'
