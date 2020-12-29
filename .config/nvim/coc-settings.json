@@ -11,6 +11,10 @@
     {
       "sha256": "6784da65e8a42567ef247ffb1719b7a2d3bfbc15bcbaef3af5499de08b24c966",
       "allowed": true
+    },
+    {
+      "sha256": "c50440509b2e3b8c56b98da34bdad76dc89fe71167a88266e7629d476543836a",
+      "allowed": true
     }
   ],
   "cSpell.enabled": false,
