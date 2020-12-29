@@ -152,12 +152,12 @@ alias gps='git push'
 alias gd='git diff'
 alias gdc='git diff --cached'
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias glp="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --patch"
 alias gld='git log --pretty=format:"%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s" --date=short'
 alias glt='git log --pretty=format:"%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s"'
-alias gg='git log --graph --decorate --oneline --simplify-by-decoration'
-alias gfg='git log --all --graph --decorate --oneline --simplify-by-decoration'
-alias gga='git log --graph --oneline --decorate --all'
-alias git-delete-working-branches="git branch | grep -v '.*develop\|.*master' | xargs git branch -D"
+alias git-delete-working-branches="git branch | grep -v '.*develop\|.*master\|.*main' | xargs git branch -D"
+alias git-purge="git checkout develop; git reset --hard HEAD develop; git clean -dfx; git pull"
+alias git-reset-repo="git-purge; git-delete-working-branches"
 
 # NPM
 alias nrs='npm run start'
