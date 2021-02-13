@@ -199,3 +199,5 @@ alias docker-stop-all='docker stop (docker ps -q)'
 
 zoxide init fish | source
 starship init fish | source
+
+wemux
