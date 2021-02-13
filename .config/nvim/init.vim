@@ -102,13 +102,15 @@ set spelllang=en_us
 set iskeyword+=-
 
 filetype plugin on
-autocmd FileType cpp setlocal shiftwidth=4 softtabstop=4 tabstop=4 expandtab
+autocmd FileType cpp,java setlocal shiftwidth=4 softtabstop=4 tabstop=4 expandtab
 
 " remove trailing spaces
 function TrimWhiteSpace()
   %s/\s*$//
   ''
 endfunction
+
+nnoremap <leader>t :call TrimWhiteSpace()<cr>
 
 " fzf
 nnoremap <leader>p :Files<cr>
