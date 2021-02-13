@@ -26,7 +26,6 @@ ccze \
 git \
 git-flow \
 mdv \
-gitui \
 gh \
 golang \
 jq \
@@ -50,7 +49,7 @@ if test ! (grep host_list=\($USER\) /usr/local/etc/wemux.conf)
     sed -i ''  "s|^host_list.*|host_list=($USER)|" /usr/local/etc/wemux.conf
 end
 
-# watchman
+# file watching configs
 if test ! -e /etc/sysctl.conf
     sudo touch /etc/sysctl.conf
 end
@@ -69,11 +68,9 @@ google-chrome \
 brave-browser \
 spectacle \
 alacritty \
-iterm2 \
 docker \
 slack \
 discord \
-gitter \
 signal \
 insomnia \
 insomnia-designer \
