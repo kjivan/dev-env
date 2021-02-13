@@ -130,6 +130,9 @@ function get-port-app
     command lsof -nP -iTCP:$argv | grep LISTEN
 end
 
+# AWS
+alias a='aws'
+
 # Kubectl
 alias k='kubectl'
 
