@@ -75,6 +75,7 @@ signal \
 insomnia \
 insomnia-designer \
 simplenote \
+notion \
 grammarly \
 font-lato \
 font-open-sans \
