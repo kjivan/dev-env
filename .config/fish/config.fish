@@ -24,9 +24,6 @@ if test -d $HOME/bin
     set -gx PATH $PATH $HOME/bin
 end
 
-if test -f $HOME/.local.fish
-     source $HOME/.local.fish
-end
 
 set -xg fish_greeting ""
 
@@ -162,17 +159,22 @@ alias gup='git stash; git pull; git stash pop'
 alias gps='git push'
 alias gd='git diff'
 alias gdc='git diff --cached'
-alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias glp="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --patch"
+alias gt='git tag --sort="-taggerdate"'
+alias gt1='gt | head -n 1'
+alias gl="git log --pretty=format:'%Cred%h%Creset %s -%C(yellow)%d%Creset %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias glp="git log --pretty=format:'%Cred%h%Creset %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --patch"
+alias gg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias glf="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias glpf="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --patch"
 alias glfm="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --no-merges"
 alias glpfm="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --patch --no-merges"
 alias gld='git log --pretty=format:"%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s" --date=short'
 alias glt='git log --pretty=format:"%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s"'
+
 alias git-delete-working-branches="git branch | grep -v '.*develop\|.*master\|.*main' | xargs git branch -D"
 alias git-purge="git checkout develop; git reset --hard HEAD develop; git clean -dfx; git pull"
 alias git-reset-repo="git-purge; git-delete-working-branches"
+
 
 # NPM
 alias nrs='npm run start'
@@ -194,6 +196,10 @@ alias grdns='./gradlew npmStart'
 # Docker
 alias d='docker'
 alias docker-stop-all='docker stop (docker ps -q)'
+
+if test -f $HOME/.local.fish
+     source $HOME/.local.fish
+end
 
 [ -f /home/linuxbrew/.linuxbrew/share/autojump/autojump.fish ]; and source /home/linuxbrew/.linuxbrew/share/autojump/autojump.fish
 
