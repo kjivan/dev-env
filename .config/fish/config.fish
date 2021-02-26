@@ -203,6 +203,7 @@ end
 
 [ -f /home/linuxbrew/.linuxbrew/share/autojump/autojump.fish ]; and source /home/linuxbrew/.linuxbrew/share/autojump/autojump.fish
 
+direnv hook fish | source
 zoxide init fish | source
 starship init fish | source
 
