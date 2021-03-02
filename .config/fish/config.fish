@@ -129,6 +129,7 @@ end
 
 # AWS
 alias a='aws'
+alias ak='aws --region us-east-1  --profile kj'
 
 # Kubectl
 alias k='kubectl'
