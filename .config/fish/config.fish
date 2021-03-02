@@ -1,5 +1,7 @@
 #!/usr/bin/env fish
 
+bind \co kill-line
+
 if test -d /usr/local/sbin
     set -g PATH "/usr/local/sbin" $PATH
 end
