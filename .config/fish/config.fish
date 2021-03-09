@@ -12,8 +12,7 @@ end
 if test -d /home/linuxbrew/.linuxbrew/sbin
     set -gx PATH /home/linuxbrew/.linuxbrew/sbin $PATH
 end
-if test -d /usr/local/go/bin
-    set -gx PATH $PATH /usr/local/go/bin
+if test -d $HOME/go
     set -gx GOPATH $HOME/go
 end
 if test -d $HOME/.cargo/bin
@@ -68,7 +67,7 @@ end
 # rg - grep replacement
 if type -q rg
     alias rgh='rg --hidden'
-    alias rga='rg --no-ignore'
+    alias rga='rgh --no-ignore'
     alias rgi='sk --ansi -i -c \'rg --color=always --line-number "{}"\''
 end
 
