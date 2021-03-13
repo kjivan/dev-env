@@ -39,6 +39,11 @@ alias dg="git --git-dir=$HOME/.dev-env.git/ --work-tree=$HOME"
 alias reload="source $HOME/.config/fish/config.fish"
 alias edit="vi $HOME/.config/fish/config.fish"
 
+# dos2unix
+function d2u
+    tr -d '\r' < $argv
+end
+
 # ctrl-s for sudo
 bind \cs runsudo
 
