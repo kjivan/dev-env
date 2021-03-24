@@ -102,7 +102,7 @@ set spelllang=en_us
 set iskeyword+=-
 
 filetype plugin on
-autocmd FileType cpp,java setlocal shiftwidth=4 softtabstop=4 tabstop=4 expandtab
+autocmd FileType cpp,java,gradle setlocal shiftwidth=4 softtabstop=4 tabstop=4 expandtab
 
 " remove trailing spaces
 function TrimWhiteSpace()

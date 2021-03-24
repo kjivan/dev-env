@@ -84,8 +84,8 @@ end
 if type -q exa
     alias ls='exa --grid  --color auto --sort type'
     alias lsa='exa --grid  --color auto --all --sort type'
-    alias ll='exa --long --color always --sort type'
-    alias lla='exa --grid  --color auto --all --sort type'
+    alias ll='exa --long --color auto --sort type'
+    alias lla='exa --long  --color auto --all --sort type'
 
     alias lt='exa --tree'
 end
