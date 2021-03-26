@@ -61,9 +61,7 @@ if type -q fd
     if type -q sk
         set -xg SKIM_DEFAULT_COMMAND "fd"
 
-        alias c='cd (fd --type d | sk)'
         alias ch='cd (fd --type d --search-path $HOME | sk)'
-        alias v='vi (fd | sk)'
         alias vh='vi (fd --search-path $HOME | sk)'
         alias ska='fda | sk'
     end
