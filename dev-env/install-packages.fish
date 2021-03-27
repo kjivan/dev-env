@@ -25,6 +25,7 @@ watchexec \
 ccze \
 git \
 git-flow \
+httpie \
 mdv \
 gh \
 golang \
