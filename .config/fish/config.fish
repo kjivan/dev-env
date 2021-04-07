@@ -217,4 +217,8 @@ if type -q wemux
   if test -z "$TMUX"
     wemux
   end
+else
+  if test -z "$TMUX"
+    tmux
+  end
 end
