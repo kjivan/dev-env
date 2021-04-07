@@ -219,6 +219,10 @@ if type -q wemux
   end
 else
   if test -z "$TMUX"
-    tmux
+    if tmux ls &>/dev/null
+      tmux attach
+    else
+      tmux
+    end
   end
 end
