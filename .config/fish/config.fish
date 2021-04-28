@@ -138,6 +138,67 @@ alias ak='aws --region us-east-1  --profile kj'
 # Kubectl
 alias k='kubectl'
 
+alias kar='kubectl api-resources'
+
+alias kd='kubectl describe'
+alias kl='kubectl logs'
+alias kdbg='kubectl debug'
+
+alias kccc='kubectl config current-context'
+alias kcgc='kubectl config get-contexts'
+alias kcgcl='kubectl config get-clusters'
+alias kcuc='kubectl config use-context'
+
+alias kgc='kubectl get configmaps'
+alias kgcj='kubectl get configmaps -o=json'
+alias kgcy='kubectl get configmaps -o=yaml'
+alias kec='kubectl edit configmaps'
+
+alias kgd='kubectl get deployments'
+alias kgdj='kubectl get deployments -o=json'
+alias kgdy='kubectl get deployments -o=yaml'
+alias ked='kubectl edit deployments'
+
+alias kgp='kubectl get pods'
+alias kgpj='kubectl get pods -o=json'
+alias kgpy='kubectl get pods -o=yaml'
+alias kep='kubectl edit pods'
+
+alias kgr='kubectl get routes'
+alias kgrj='kubectl get routes -o=json'
+alias kgry='kubectl get routes -o=yaml'
+alias ker='kubectl edit routes'
+
+alias kgs='kubectl get secrets'
+alias kgsj='kubectl get secrets -o=json'
+alias kgsy='kubectl get secrets -o=yaml'
+alias kes='kubectl edit secrets'
+
+alias kgsvc='kubectl get services'
+alias kgsvcj='kubectl get services -o=json'
+alias kgsvcy='kubectl get services -o=yaml'
+alias kesvc='kubectl edit services'
+
+alias ks='kubectl scale deployments'
+
+alias kroh='kubectl rollout history deployments'
+alias kror='kubectl rollout restart deployments'
+alias kros='kubectl rollout status deployments'
+alias krou='kubectl rollout undo deployments'
+
+function kgts
+  kubectl get secret $argv[1] -o json |\
+  jq --raw-output ". | .data.\"$argv[2]\"" |\
+  base64 -D > $argv[2]
+  echo "Created $argv[2]"
+end
+
+function kpts
+  kubectl patch secret $argv[1] \
+  --type=json \
+  -p="[{"op": "replace", "path": "/data/$argv[2]", "value": "\"(base64 $argv[2])\""}]"
+end
+
 # Git
 alias g='git'
 alias gs='git status --short --branch'
