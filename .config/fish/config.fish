@@ -181,6 +181,10 @@ alias git-delete-working-branches="git branch | grep -v '.*develop\|.*master\|.*
 alias git-purge="git checkout develop; git reset --hard HEAD develop; git clean -dfx; git pull"
 alias git-reset-repo="git-purge; git-delete-working-branches"
 
+# Git Hub
+alias ghprl='gh pr list'
+alias ghprco='gh pr checkout'
+
 
 # NPM
 alias nrs='npm run start'
@@ -226,3 +230,8 @@ else
     end
   end
 end
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+#eval /Users/kjivan/anaconda3/bin/conda "shell.fish" "hook" $argv | source
+# <<< conda initialize <<<
