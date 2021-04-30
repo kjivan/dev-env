@@ -131,6 +131,53 @@ function get-port-app
     command lsof -nP -iTCP:$argv | grep LISTEN
 end
 
+# Git
+alias g='git'
+alias gs='git status --short --branch'
+alias gst='git stash'
+alias gf='git fetch'
+alias gco='git checkout'
+alias gcop='git checkout --patch'
+alias gr='git reset'
+alias grh='git reset HEAD'
+alias grhrd='git reset --hard'
+alias grhh='git reset --hard HEAD'
+alias grs='git reset --soft'
+alias grsh='git reset --soft HEAD'
+alias grhp='git reset HEAD --patch'
+alias ga='git add'
+alias gap='git add --patch'
+alias gai='git add --interactive '
+alias grb='git rebase'
+alias grbi='git rebase --interactive'
+alias gc='git commit'
+alias gb='git branch'
+alias gbl='git blame'
+alias gpl='git pull'
+alias gup='git stash; git pull; git stash pop'
+alias gps='git push'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gt='git tag --sort="-taggerdate"'
+alias gt1='gt | head -n 1'
+alias gl="git log --pretty=format:'%Cred%h%Creset %s -%C(yellow)%d%Creset %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias glp="git log --pretty=format:'%Cred%h%Creset %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --patch"
+alias gg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias glf="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias glpf="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --patch"
+alias glfm="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --no-merges"
+alias glpfm="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --patch --no-merges"
+alias gld='git log --pretty=format:"%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s" --date=short'
+alias glt='git log --pretty=format:"%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s"'
+
+alias git-delete-working-branches="git branch | grep -v '.*develop\|.*master\|.*main' | xargs git branch -D"
+alias git-purge="git checkout develop; git reset --hard HEAD develop; git clean -dfx; git pull"
+alias git-reset-repo="git-purge; git-delete-working-branches"
+
+# Git Hub
+alias ghprl='gh pr list'
+alias ghprco='gh pr checkout'
+
 # AWS
 alias a='aws'
 alias ak='aws --region us-east-1  --profile kj'
@@ -207,54 +254,6 @@ function kpts
   --type=json \
   -p="[{"op": "replace", "path": "/data/$argv[2]", "value": "\"(base64 $argv[2])\""}]"
 end
-
-# Git
-alias g='git'
-alias gs='git status --short --branch'
-alias gst='git stash'
-alias gf='git fetch'
-alias gco='git checkout'
-alias gcop='git checkout --patch'
-alias gr='git reset'
-alias grh='git reset HEAD'
-alias grhrd='git reset --hard'
-alias grhh='git reset --hard HEAD'
-alias grs='git reset --soft'
-alias grsh='git reset --soft HEAD'
-alias grhp='git reset HEAD --patch'
-alias ga='git add'
-alias gap='git add --patch'
-alias gai='git add --interactive '
-alias grb='git rebase'
-alias grbi='git rebase --interactive'
-alias gc='git commit'
-alias gb='git branch'
-alias gbl='git blame'
-alias gpl='git pull'
-alias gup='git stash; git pull; git stash pop'
-alias gps='git push'
-alias gd='git diff'
-alias gdc='git diff --cached'
-alias gt='git tag --sort="-taggerdate"'
-alias gt1='gt | head -n 1'
-alias gl="git log --pretty=format:'%Cred%h%Creset %s -%C(yellow)%d%Creset %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias glp="git log --pretty=format:'%Cred%h%Creset %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --patch"
-alias gg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias glf="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias glpf="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --patch"
-alias glfm="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --no-merges"
-alias glpfm="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --patch --no-merges"
-alias gld='git log --pretty=format:"%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s" --date=short'
-alias glt='git log --pretty=format:"%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s"'
-
-alias git-delete-working-branches="git branch | grep -v '.*develop\|.*master\|.*main' | xargs git branch -D"
-alias git-purge="git checkout develop; git reset --hard HEAD develop; git clean -dfx; git pull"
-alias git-reset-repo="git-purge; git-delete-working-branches"
-
-# Git Hub
-alias ghprl='gh pr list'
-alias ghprco='gh pr checkout'
-
 
 # NPM
 alias nrs='npm run start'
