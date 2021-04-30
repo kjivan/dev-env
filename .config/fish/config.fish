@@ -138,6 +138,9 @@ alias ak='aws --region us-east-1  --profile kj'
 # Kubectl
 alias k='kubectl'
 
+alias ka='kubectl apply'
+alias kaf='kubectl apply -f'
+
 alias kar='kubectl api-resources'
 
 alias kd='kubectl describe'
@@ -185,6 +188,12 @@ alias kroh='kubectl rollout history deployments'
 alias kror='kubectl rollout restart deployments'
 alias kros='kubectl rollout status deployments'
 alias krou='kubectl rollout undo deployments'
+
+# kustomize
+alias ku='kubectl kustomize'
+alias kua='kubectl apply -k'
+alias kug='kubectl get -k'
+alias kud='kubectl describe -k'
 
 function kgts
   kubectl get secret $argv[1] -o json |\
