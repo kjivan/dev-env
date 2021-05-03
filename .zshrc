@@ -9,6 +9,7 @@
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 setopt share_history
+bindkey -e
 
 export VISUAL=nvim
 export EDITOR $VISUAL
