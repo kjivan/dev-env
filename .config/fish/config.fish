@@ -71,7 +71,6 @@ end
 if type -q rg
     alias rgh='rg --hidden'
     alias rga='rgh --no-ignore'
-    alias rgi='sk --ansi -i -c \'rg --color=always --line-number "{}"\''
 end
 
 if type -q nvim
