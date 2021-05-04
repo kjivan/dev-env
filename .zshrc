@@ -1,3 +1,34 @@
+[ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
+HISTSIZE=50000
+SAVEHIST=10000
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt inc_append_history
+setopt share_history
+setopt auto_cd
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt pushdminus
+setopt auto_menu
+setopt always_to_end
+setopt complete_in_word
+setopt flow_control
+setopt menu_complete
+zstyle ':completion:*:*:*:*:*' menu selectzstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|=*' 'l:|=* r:|=*'zstyle ':completion::complete:*' use-cache 1zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIRzstyle ':completion:*' list-colors ''zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
+bindkey -e
+
+autoload -Uz compinit 
+if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+	compinit;
+else
+	compinit -C;
+fi;
+
+export ZSH_CACHE_DIR=.zcache/
+source ~/.zsh_plugins.sh
+
 [ -d /usr/local/sbin ] && export PATH="/usr/local/sbin:$PATH"
 [ -d /home/linuxbrew/.linuxbrew/bin ] && export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 [ -d /home/linuxbrew/.linuxbrew/sbin ] && export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"
@@ -5,11 +36,6 @@
 [ -d $HOME/.cargo/bin ] && export PATH="$PATH:$HOME/.cargo/bin"
 [ -d $HOME/.poetry/bin ] && export PATH="$PATH:$HOME/.poetry/bin"
 [ -d $HOME/bin ] && export PATH="$PATH:$HOME/bin"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-setopt share_history
-bindkey -e
 
 export VISUAL=nvim
 export EDITOR $VISUAL
@@ -22,8 +48,10 @@ alias edit="vi $HOME/.zshrc"
 
 if type "sk">/dev/null; then
   export SKIM_DEFAULT_OPTIONS='--ansi --color="fg:#458588,bg:#1d2021,hl:#98971a,fg+:#458588,hl+:#cc241d,info:#b16286"'
-  alias fzf='sk'
+  alias -g fzf='sk'
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 if type "fd">/dev/null; then
   alias fdh='fd --hidden'
