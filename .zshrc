@@ -19,15 +19,16 @@ setopt menu_complete
 zstyle ':completion:*:*:*:*:*' menu selectzstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|=*' 'l:|=* r:|=*'zstyle ':completion::complete:*' use-cache 1zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIRzstyle ':completion:*' list-colors ''zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
 bindkey -e
 
-autoload -Uz compinit 
+autoload -Uz compinit
 if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
-	compinit;
+  compinit;
 else
-	compinit -C;
+  compinit -C;
 fi;
 
 export ZSH_CACHE_DIR=.zcache/
 source ~/.zsh_plugins.sh
+alias update-plugins="antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh"
 
 [ -d /usr/local/sbin ] && export PATH="/usr/local/sbin:$PATH"
 [ -d /home/linuxbrew/.linuxbrew/bin ] && export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
