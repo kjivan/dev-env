@@ -153,6 +153,7 @@ set clipboard^=unnamed,unnamedplus
 let g:FerretExecutableArguments = {
   \   'rg': '--vimgrep --no-heading --no-config --max-columns 4096'
   \ }
+vmap <leader>s y:Ack <C-R>"<cr>
 
 nnoremap <leader>j :cn <cr>
 nnoremap <leader>k :cp <cr>
