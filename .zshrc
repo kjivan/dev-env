@@ -52,7 +52,7 @@ if type "sk">/dev/null; then
   alias -g fzf='sk'
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.zsh/sk.zsh ] && source ~/.zsh/sk.zsh
 
 if type "fd">/dev/null; then
   alias fdh='fd --hidden'
