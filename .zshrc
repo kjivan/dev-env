@@ -282,11 +282,11 @@ if test -f $HOME/.local.zshrc; then
 fi
 
 if type "wemux">/dev/null; then
-  if [[ -v "$TMUX" ]]; then
+  if [ -z "$TMUX" ]; then
     wemux
   fi
 else
-  if [[ -v "$TMUX" ]]; then
+  if [ -z "$TMUX" ]; then
     if tmux ls &>/dev/null; then
       tmux attach
     else
