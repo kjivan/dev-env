@@ -73,6 +73,9 @@ alias grep='command grep --color=auto'
 if type "rg">/dev/null; then
   alias rgh='rg --hidden'
   alias rga='rgh --no-ignore'
+  if type "sk">/dev/null; then
+    alias rgs="sk --ansi -i -c 'rg --color=always --line-number \"{}\"'"
+  fi
 fi
 
 if type "nvim">/dev/null; then
