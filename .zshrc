@@ -85,10 +85,9 @@ fi
 
 if type "exa">/dev/null; then
   alias ls='exa --grid  --color auto --sort type'
-  alias lsa='exa --grid  --color auto --all --sort type'
+  alias la='exa --grid  --color auto --all --sort type'
   alias ll='exa --long --color auto --sort type'
   alias lla='exa --long  --color auto --all --sort type'
-
   alias lt='exa --tree'
 fi
 
