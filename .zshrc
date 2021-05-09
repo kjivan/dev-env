@@ -1,4 +1,10 @@
-[ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
+# https://www.viget.com/articles/zsh-config-productivity-plugins-for-mac-oss-default-shell/
+# https://unix.stackexchange.com/questions/84867/zsh-completion-enabling-shift-tab
+# https://unix.stackexchange.com/questions/367693/fish-like-argument-completion-search-in-zsh
+# https://stackoverflow.com/questions/8300687/zsh-color-partial-tab-completions
+# https://stackoverflow.com/questions/23152157/how-does-the-zsh-list-colors-syntax-work
+export ZSH_CACHE_DIR=$HOME/.zsh/zcache/
+[ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh/zsh_history"
 HISTSIZE=50000
 SAVEHIST=10000
 setopt extended_history
@@ -16,8 +22,25 @@ setopt always_to_end
 setopt complete_in_word
 setopt flow_control
 setopt menu_complete
-zstyle ':completion:*:*:*:*:*' menu selectzstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|=*' 'l:|=* r:|=*'zstyle ':completion::complete:*' use-cache 1zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIRzstyle ':completion:*' list-colors ''zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
+zmodload zsh/complist
+bindkey -M menuselect '^[[Z' reverse-menu-complete
+bindkey -M menuselect '?' history-incremental-search-forward
+zstyle ':completion:*:*:*:*:*' menu yes select
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 
+zstyle ':completion::complete:*' use-cache 1
+zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
+zstyle ':completion:*' list-colors ''
+zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==34=34}:${(s.:.)LS_COLORS}")'
+zstyle ':completion:*:parameters'  list-colors '=*=32'
+zstyle ':completion:*:commands' list-colors '=*=1;31'
+zstyle ':completion:*:*:kill:*' menu yes select
+zstyle ':completion:*:kill:*' force-list always
+
 bindkey -e
+
+[ ! -d $ZSH_CACHE_DIR ] && mkdir $ZSH_CACHE_DIR
+source $HOME/.zsh/zsh_plugins.sh
+alias update-plugins="antibody bundle < $HOME/.zsh/zsh_plugins.txt > $HOME/.zsh/zsh_plugins.sh"
 
 autoload -Uz compinit
 if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
@@ -25,11 +48,7 @@ if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
 else
   compinit -C;
 fi;
-
-export ZSH_CACHE_DIR=$HOME/.zsh/zcache/
-[ ! -d $ZSH_CACHE_DIR ] && mkdir $ZSH_CACHE_DIR
-source $HOME/.zsh/zsh_plugins.sh
-alias update-plugins="antibody bundle < $HOME/.zsh/zsh_plugins.txt > $HOME/.zsh/zsh_plugins.sh"
+alias update-completions="compinit -C"
 
 [ -d /usr/local/sbin ] && export PATH="/usr/local/sbin:$PATH"
 [ -d /home/linuxbrew/.linuxbrew/bin ] && export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
