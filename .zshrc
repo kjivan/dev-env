@@ -26,9 +26,10 @@ else
   compinit -C;
 fi;
 
-export ZSH_CACHE_DIR=.zcache/
-source ~/.zsh_plugins.sh
-alias update-plugins="antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh"
+export ZSH_CACHE_DIR=$HOME/.zsh/zcache/
+[ ! -d $ZSH_CACHE_DIR ] && mkdir $ZSH_CACHE_DIR
+source $HOME/.zsh/zsh_plugins.sh
+alias update-plugins="antibody bundle < $HOME/.zsh/zsh_plugins.txt > $HOME/.zsh/zsh_plugins.sh"
 
 [ -d /usr/local/sbin ] && export PATH="/usr/local/sbin:$PATH"
 [ -d /home/linuxbrew/.linuxbrew/bin ] && export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
@@ -132,6 +133,10 @@ alias serve-http3='python3 -m http.server 8000 --bind 127.0.0.1'
 # Network Debugging
 get-port-app(){
   command lsof -nP -iTCP:"$@" | grep LISTEN
+}
+
+benchmark-shell(){
+  for i in $(seq 1 10); do /usr/bin/time $SHELL -i -c exit; done
 }
 
 # Git
