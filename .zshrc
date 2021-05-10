@@ -64,10 +64,10 @@ alias update-plugins="antibody bundle < $HOME/.zsh/zsh_plugins.txt > $HOME/.zsh/
 
 autoload -Uz compinit
 if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
-  compinit;
+  compinit -u;
 else
   echo Genning completion
-  compinit -C;
+  compinit -uC;
 fi;
 alias update-completions="compinit -C"
 
