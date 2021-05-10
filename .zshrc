@@ -139,10 +139,10 @@ if type "bat">/dev/null; then
 fi
 
 if type "ccze">/dev/null; then
-  ca(){
+  ca() {
     cat "$@" | ccze -A
   }
-  t(){
+  t() {
     tail "$@" | ccze -A
   }
   tf() {
@@ -158,12 +158,12 @@ fi
 
 
 if type "autossh">/dev/null; then
-    ssh(){
+    ssh() {
       command autossh -M 0 "$@"
     }
 fi
 
-create-min-snow(){
+create-min-snow() {
    yarn create snowpack-app "$@" --template @snowpack/app-template-minimal --use-yarn
 }
 
@@ -171,11 +171,11 @@ alias serve-http='python -m SimpleHTTPServer 8000'
 alias serve-http3='python3 -m http.server 8000 --bind 127.0.0.1'
 
 # Network Debugging
-get-port-app(){
+get-port-app() {
   command lsof -nP -iTCP:"$@" | grep LISTEN
 }
 
-benchmark-shell(){
+benchmark-shell() {
   for i in $(seq 1 10); do /usr/bin/time $SHELL -i -c exit; done
 }
 
@@ -290,14 +290,14 @@ alias kua='kubectl apply -k'
 alias kug='kubectl get -k'
 alias kud='kubectl describe -k'
 
-kgts(){
+kgts() {
   kubectl get secret $1 -o json |\
   jq --raw-output ". | .data.\"$2\"" |\
   base64 -D > $2
   echo "Created $2"
 }
 
-kpts(){
+kpts() {
   kubectl patch secret $1 \
   --type=json \
   -p="[{"op": "replace", "path": "/data/$2", "value": "\"(base64 $2)\""}]"
@@ -324,9 +324,7 @@ alias grdns='./gradlew npmStart'
 alias d='docker'
 alias docker-stop-all='docker stop (docker ps -q)'
 
-if test -f $HOME/.local.zshrc; then
-     source $HOME/.local.zshrc
-fi
+[ -f $HOME/.local.zsh ] && source $HOME/.local.zsh
 
 if type "wemux">/dev/null; then
   if [ -z "$TMUX" ]; then
@@ -341,7 +339,6 @@ else
     fi
   fi
 fi
-
 
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
