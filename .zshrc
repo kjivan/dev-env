@@ -3,6 +3,13 @@
 # https://unix.stackexchange.com/questions/367693/fish-like-argument-completion-search-in-zsh
 # https://stackoverflow.com/questions/8300687/zsh-color-partial-tab-completions
 # https://stackoverflow.com/questions/23152157/how-does-the-zsh-list-colors-syntax-work
+# https://superuser.com/questions/290500/zsh-completion-colors-and-os-x?rq=1
+# https://superuser.com/questions/1200487/zsh-completion-list-colors-partial-colouring-issue
+# https://grml.org/zsh/zsh-lovers.html
+# https://gist.github.com/flixr/1468156
+# http://zsh.sourceforge.net/Guide/zshguide06.html
+# http://zsh.sourceforge.net/Doc/Release/Completion-System.html
+# https://zv.github.io/a-review-of-zsh-completion-utilities
 export ZSH_CACHE_DIR=$HOME/.zsh/zcache/
 [ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh/zsh_history"
 HISTSIZE=50000
@@ -22,19 +29,32 @@ setopt always_to_end
 setopt complete_in_word
 setopt flow_control
 setopt menu_complete
+setopt complete_aliases
 zmodload zsh/complist
 bindkey -M menuselect '^[[Z' reverse-menu-complete
 bindkey -M menuselect '?' history-incremental-search-forward
-zstyle ':completion:*:*:*:*:*' menu yes select
-zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 
+
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|=*' 'l:|=* r:|=*'
 zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
 zstyle ':completion:*' list-colors ''
+zstyle ':completion:*:default' list-colors '=*=32'
+export LS_COLORS="di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
+#zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+#zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} '=(#b)*(-- *)=32=34' '=*=32'
+#zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}'=(#b)*(-- *)=32=34' '=*=32'
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
+
+# zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|=*' 'l:|=* r:|=*'
+# zstyle ':completion::complete:*' use-cache 1
+# zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
+# zstyle ':completion:*' list-colors ''
+# zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
+# zstyle ':completion:*:*:parameters'  list-colors '=*=32'
+# zstyle ':completion:*:builtins' list-colors '=*=1;38;5;142'
+# zstyle ':completion:*:aliases' list-colors '=*=2;38;5;128'
 zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==34=34}:${(s.:.)LS_COLORS}")'
-zstyle ':completion:*:parameters'  list-colors '=*=32'
-zstyle ':completion:*:commands' list-colors '=*=1;31'
-zstyle ':completion:*:*:kill:*' menu yes select
-zstyle ':completion:*:kill:*' force-list always
 
 bindkey -e
 
@@ -46,6 +66,7 @@ autoload -Uz compinit
 if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
   compinit;
 else
+  echo Genning completion
   compinit -C;
 fi;
 alias update-completions="compinit -C"
