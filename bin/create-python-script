@@ -1,5 +1,63 @@
 #!/usr/bin/env bash
 
 script_name=${1:-script.py}
-echo "#!/usr/bin/env python3" > $script_name
+
+(
+cat <<EOF
+#!/usr/bin/env python3
+
+from argparse import ArgumentParser
+
+
+def main():
+    args = parse_args()
+    print(args.url)
+    print(args.bearer_token)
+
+
+def parse_args():
+    arg_parser = ArgumentParser(
+            description="Description of the script"
+        )
+
+    arg_parser.add_argument(
+        "-b",
+        "--bearer_token",
+        help="oauth2 bearer token",
+        required=True,
+    )
+    arg_parser.add_argument(
+        "-u",
+        "--url",
+        nargs="?",
+        default="https://site.com",
+        help="connecting url",
+    )
+    arg_parser.add_argument(
+        "-p",
+        "--people",
+        nargs="?",
+        default="10000",
+        type=int,
+        help="number of people",
+    )
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument(
+        "-r",
+        "--repos",
+        help="comma seperated list of repos/directories, which will be used to run commands",
+    )
+    group.add_argument(
+        "-rf",
+        "--repo_file",
+        type=argparse.FileType("r"),
+        help="a file containing a comma seperated list of repos/directories, which will be used to run commands",
+    )
+    args = parser.parse_args()
+    return args
+
+main()
+
+EOF
+) > $script_name
 chmod +x $script_name
