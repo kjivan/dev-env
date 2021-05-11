@@ -1,65 +1,37 @@
 #!/usr/bin/env fish
 
 bind \co kill-line
+bind \cs runsudo
 
-if test -d /usr/local/sbin
-    set -g PATH "/usr/local/sbin" $PATH
-end
+[ -d /usr/local/sbin ] && set -g PATH "/usr/local/sbin" $PATH
+[ -d $HOME/go ] && set -gx GOPATH $HOME/go
+[ -d $HOME/.cargo/bin ] && set -gx PATH $PATH $HOME/.cargo/bin
+[ -d $HOME/.poetry/bin ] && set -gx PATH $PATH $HOME/.poetry/bin
+[ -d $HOME/bin ] && set -gx PATH $PATH $HOME/bin
 
-if test -d /home/linuxbrew/.linuxbrew/bin
-    set -gx PATH /home/linuxbrew/.linuxbrew/bin $PATH
-end
-if test -d /home/linuxbrew/.linuxbrew/sbin
-    set -gx PATH /home/linuxbrew/.linuxbrew/sbin $PATH
-end
-if test -d $HOME/go
-    set -gx GOPATH $HOME/go
-end
-if test -d $HOME/.cargo/bin
-    set -gx PATH $PATH $HOME/.cargo/bin
-end
-if test -d $HOME/.poetry/bin
-    set -gx PATH $PATH $HOME/.poetry/bin
-end
-if test -d $HOME/bin
-    set -gx PATH $PATH $HOME/bin
-end
+set -gx fish_greeting ""
 
+set -gx VISUAL nvim
+set -gx EDITOR $VISUAL
+set -gx GIT_EDITOR $VISUAL
 
-set -xg fish_greeting ""
-
-set -xg VISUAL nvim
-set -xg EDITOR $VISUAL
-set -xg GIT_EDITOR $VISUAL
-
-# dev-env git
 alias dg="git --git-dir=$HOME/.dev-env.git/ --work-tree=$HOME"
 
-# fish editing
+function benchmark-shell; for i in (seq 1 10); /usr/bin/time fish -i -c exit; end; end;
 alias reload="source $HOME/.config/fish/config.fish"
 alias edit="vi $HOME/.config/fish/config.fish"
 
-# dos2unix
-function d2u
-    tr -d '\r' < $argv
-end
-
-# ctrl-s for sudo
-bind \cs runsudo
-
-# sk - fast fuzzy finder
 if type -q sk
-  set -xg SKIM_DEFAULT_OPTIONS '--ansi --color="fg:#458588,bg:#1d2021,hl:#98971a,fg+:#458588,hl+:#cc241d,info:#b16286"'
+  set -gx SKIM_DEFAULT_OPTIONS '--ansi --color="fg:#458588,bg:#1d2021,hl:#98971a,fg+:#458588,hl+:#cc241d,info:#b16286"'
   alias fzf='sk'
 end
 
-# fd - find replacement
 if type -q fd
     alias fdh='fd --hidden'
     alias fda='fdh --no-ignore'
 
     if type -q sk
-        set -xg SKIM_DEFAULT_COMMAND "fd"
+        set -gx SKIM_DEFAULT_COMMAND "fd"
 
         alias ch='cd (fd --type d --search-path $HOME | sk)'
         alias vh='vi (fd --search-path $HOME | sk)'
@@ -67,7 +39,7 @@ if type -q fd
     end
 end
 
-# rg - grep replacement
+alias grep='command grep --color=auto'
 if type -q rg
     alias rgh='rg --hidden'
     alias rga='rgh --no-ignore'
@@ -86,8 +58,6 @@ if type -q exa
 
     alias lt='exa --tree'
 end
-
-alias grep='command grep --color=auto'
 
 if type -q bat
     alias cat='bat -p'
@@ -130,164 +100,26 @@ function get-port-app
     command lsof -nP -iTCP:$argv | grep LISTEN
 end
 
-# Git
-alias g='git'
-alias gs='git status --short --branch'
-alias gst='git stash'
-alias gf='git fetch'
-alias gco='git checkout'
-alias gcop='git checkout --patch'
-alias gr='git reset'
-alias grh='git reset HEAD'
-alias grhrd='git reset --hard'
-alias grhh='git reset --hard HEAD'
-alias grs='git reset --soft'
-alias grsh='git reset --soft HEAD'
-alias grhp='git reset HEAD --patch'
-alias ga='git add'
-alias gap='git add --patch'
-alias gai='git add --interactive '
-alias grb='git rebase'
-alias grbi='git rebase --interactive'
-alias gc='git commit'
-alias gb='git branch'
-alias gbl='git blame'
-alias gpl='git pull'
-alias gup='git stash; git pull; git stash pop'
-alias gps='git push'
-alias gd='git diff'
-alias gdc='git diff --cached'
-alias gt='git tag --sort="-taggerdate"'
-alias gt1='gt | head -n 1'
-alias gl="git log --pretty=format:'%Cred%h%Creset %s -%C(yellow)%d%Creset %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias glp="git log --pretty=format:'%Cred%h%Creset %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --patch"
-alias gg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias glf="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias glpf="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --patch"
-alias glfm="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --no-merges"
-alias glpfm="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --patch --no-merges"
-alias gld='git log --pretty=format:"%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s" --date=short'
-alias glt='git log --pretty=format:"%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s"'
+source $HOME/.config/fish/aws.fish
+source $HOME/.config/fish/docker.fish
+source $HOME/.config/fish/gh.fish
+source $HOME/.config/fish/git.fish
+source $HOME/.config/fish/gradle.fish
+source $HOME/.config/fish/kubectl.fish
+source $HOME/.config/fish/npm.fish
 
-alias git-delete-working-branches="git branch | grep -v '.*develop\|.*master\|.*main' | xargs git branch -D"
-alias git-purge="git checkout develop; git reset --hard HEAD develop; git clean -dfx; git pull"
-alias git-reset-repo="git-purge; git-delete-working-branches"
-
-# Git Hub
-alias ghprl='gh pr list'
-alias ghprco='gh pr checkout'
-
-# AWS
-alias a='aws'
-alias ak='aws --region us-east-1  --profile kj'
-
-# Kubectl
-alias k='kubectl'
-
-alias ka='kubectl apply'
-alias kaf='kubectl apply -f'
-
-alias kar='kubectl api-resources'
-
-alias kd='kubectl describe'
-alias kl='kubectl logs'
-alias kdbg='kubectl debug'
-
-alias kccc='kubectl config current-context'
-alias kcgc='kubectl config get-contexts'
-alias kcgcl='kubectl config get-clusters'
-alias kcuc='kubectl config use-context'
-
-alias kgc='kubectl get configmaps'
-alias kdc='kubectl describe configmaps'
-alias kec='kubectl edit configmaps'
-alias kgd='kubectl get deployments'
-alias kdd='kubectl describe deployments'
-alias ked='kubectl edit deployments'
-alias kgdc='kubectl get deploymentconfigs'
-alias kddc='kubectl describe deploymentconfigs'
-alias kedc='kubectl edit deploymentconfigs'
-alias kgp='kubectl get pods'
-alias kdp='kubectl describe pods'
-alias kep='kubectl edit pods'
-alias kgr='kubectl get routes'
-alias kdr='kubectl describe routes'
-alias ker='kubectl edit routes'
-alias kgs='kubectl get secrets'
-alias kds='kubectl describe secrets'
-alias kes='kubectl edit secrets'
-alias kgsvc='kubectl get services'
-alias kdsvc='kubectl describe services'
-alias kesvc='kubectl edit services'
-
-alias ks='kubectl scale deployments'
-alias ksdc='kubectl scale deploymentconfigs'
-
-alias kroh='kubectl rollout history deployments'
-alias krohdc='oc rollout history deploymentconfigs'
-alias kror='kubectl rollout restart deployments'
-alias krordc='oc rollout restart deploymentconfigs'
-alias kros='kubectl rollout status deployments'
-alias krosdc='oc rollout status deploymentconfigs'
-alias krou='kubectl rollout undo deployments'
-alias kroudc='oc rollout undo deploymentconfigs'
-
-# kustomize
-alias ku='kubectl kustomize'
-alias kua='kubectl apply -k'
-alias kug='kubectl get -k'
-alias kud='kubectl describe -k'
-
-function kgts
-  kubectl get secret $argv[1] -o json |\
-  jq --raw-output ". | .data.\"$argv[2]\"" |\
-  base64 -D > $argv[2]
-  echo "Created $argv[2]"
-end
-
-function kpts
-  kubectl patch secret $argv[1] \
-  --type=json \
-  -p="[{"op": "replace", "path": "/data/$argv[2]", "value": "\"(base64 $argv[2])\""}]"
-end
-
-# NPM
-alias nrs='npm run start'
-alias nrb='npm run build'
-alias nrt='npm run test'
-alias nrth='npm run test-headless'
-alias nrl='npm run lint'
-alias nre='npm run e2e'
-alias acid-test-gyp='curl -sL https://github.com/nodejs/node-gyp/raw/master/macOS_Catalina_acid_test.sh | bash'
-
-# Gradle
-alias grd='./gradlew'
-alias grdcb='./gradlew clean build'
-alias grdcbp='./gradlew clean build publishToMavenLocal'
-alias grdcbr='./gradlew clean bootrun'
-alias grdbr='./gradlew bootrun'
-alias grdns='./gradlew npmStart'
-
-# Docker
-alias d='docker'
-alias docker-stop-all='docker stop (docker ps -q)'
-
-if test -f $HOME/.local.fish
-     source $HOME/.local.fish
-end
-
-[ -f /home/linuxbrew/.linuxbrew/share/autojump/autojump.fish ]; and source /home/linuxbrew/.linuxbrew/share/autojump/autojump.fish
+[ -f $HOME/.local.fish ] && source $HOME/.local.fish
 
 direnv hook fish | source
 zoxide init fish | source
 starship init fish | source
 
 if type -q wemux
-  if test -z "$TMUX"
+  if [ -z "$TMUX" ]
     wemux
   end
 else
-  if test -z "$TMUX"
+  if [ -z "$TMUX" ]
     if tmux ls &>/dev/null
       tmux attach
     else
