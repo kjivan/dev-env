@@ -1,14 +1,14 @@
-alias edit-gh='vi $HOME/.config/fish/gh.fish'
+function edit-gh -w "vi $HOME/.config/fish/gh.fish"; vi $HOME/.config/fish/gh.fish $argv; end
 
-alias ghprls='gh pr list'
-alias ghprco='gh pr checkout'
+function ghprls -w "gh pr list"; gh pr list $argv; end
+function ghprco -w "gh pr checkout"; gh pr checkout $argv; end
 
-alias ghrcr='gh repo create'
-alias ghrcl='gh repo clone'
-alias ghrf='gh repo fork'
+function ghrcr -w "gh repo create"; gh repo create $argv; end
+function ghrcl -w "gh repo clone"; gh repo clone $argv; end
+function ghrf -w "gh repo fork"; gh repo fork $argv; end
 
-alias ghgls='gh gist list'
-alias ghgv='gh gist view'
-alias ghgcr='gh gist create'
-alias ghge='gh gist edit'
-alias ghgd='gh gist delete'
+function ghgls -w "gh gist list"; gh gist list $argv; end
+function ghgv -w "gh gist view"; gh gist view $argv; end
+function ghgcr -w "gh gist create"; gh gist create $argv; end
+function ghge -w "gh gist edit"; gh gist edit $argv; end
+function ghgd -w "gh gist delete"; gh gist delete $argv; end

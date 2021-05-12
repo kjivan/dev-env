@@ -1,19 +1,19 @@
-alias edit-gradle='vi $HOME/.config/fish/gradle.fish'
+function edit-gradle -w "vi $HOME/.config/fish/gradle.fish"; vi $HOME/.config/fish/gradle.fish $argv; end
 
-alias grd='./gradlew'
-alias grdtsk='./gradlew tasks'
-alias grddep='./gradlew dependencies'
+function grd -w "./gradlew"; ./gradlew $argv; end
+function grdtsk -w "./gradlew tasks"; ./gradlew tasks $argv; end
+function grddep -w "./gradlew dependencies"; ./gradlew dependencies $argv; end
 
-alias grdb='./gradlew build'
-alias grdcb='./gradlew clean build'
-alias grdcbp='./gradlew clean build publishToMavenLocal'
+function grdb -w "./gradlew build"; ./gradlew build $argv; end
+function grdcb -w "./gradlew clean build"; ./gradlew clean build $argv; end
+function grdcbp -w "./gradlew clean build publishToMavenLocal"; ./gradlew clean build publishToMavenLocal $argv; end
 
-alias grdbr='./gradlew bootrun'
-alias grdcbr='./gradlew clean bootrun'
+function grdbr -w "./gradlew bootrun"; ./gradlew bootrun $argv; end
+function grdcbr -w "./gradlew clean bootrun"; ./gradlew clean bootrun $argv; end
 
-alias grdns='./gradlew npmStart'
-alias grdcns='./gradlew clean npmStart'
+function grdns -w "./gradlew npmStart"; ./gradlew npmStart $argv; end
+function grdcns -w "./gradlew clean npmStart"; ./gradlew clean npmStart $argv; end
 
-alias grdt='./gradlew test'
-alias grdct='./gradlew clean test'
+function grdt -w "./gradlew test"; ./gradlew test $argv; end
+function grdct -w "./gradlew clean test"; ./gradlew clean test $argv; end
 
