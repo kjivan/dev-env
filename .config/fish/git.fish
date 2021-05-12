@@ -142,3 +142,10 @@ function git_main_branch
     echo master
   end
 end
+
+function gcb
+  git checkout develop
+  git pull
+  git checkout -b $argv
+  git push --set-upstream origin $argv
+end

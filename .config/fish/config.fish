@@ -1,7 +1,6 @@
 #!/usr/bin/env fish
 
 bind \co kill-line
-bind \cs runsudo
 
 [ -d /usr/local/sbin ] && set -g PATH "/usr/local/sbin" $PATH
 [ -d $HOME/go ] && set -gx GOPATH $HOME/go
@@ -83,7 +82,7 @@ function create-min-snow; yarn create snowpack-app $argv --template @snowpack/ap
 
 function serve-http -w "python -m SimpleHTTPServer 8000"; python -m SimpleHTTPServer 8000 $argv; end
 function serve-http3 -w "python3 -m http.server 8000 --bind 127.0.0.1"; python3 -m http.server 8000 --bind 127.0.0.1 $argv; end
-function get-port-app; command lsof -nP -iTCP:$argv | grep LISTEN; end
+function get-port-app; lsof -nP -iTCP:$argv | grep LISTEN; end
 
 source $HOME/.config/fish/aws.fish
 source $HOME/.config/fish/docker.fish
