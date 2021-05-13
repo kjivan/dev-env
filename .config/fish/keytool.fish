@@ -3,7 +3,8 @@ function edit-keytool -w "vi $HOME/.config/fish/keytool.fish"; vi $HOME/.config/
 function ktl -w 'keytool -list -keystore'
   keytool -list \
     -keystore $argv[1] \
-    | grep -v fingerprint
+    | grep -v fingerprint \
+    | sort
 end
 
 function ktls -w 'keytool -list -keystore'
