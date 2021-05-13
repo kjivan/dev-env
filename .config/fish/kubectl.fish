@@ -55,14 +55,30 @@ function kua -w "kubectl apply -k"; kubectl apply -k $argv; end
 function kug -w "kubectl get -k"; kubectl get -k $argv; end
 function kud -w "kubectl describe -k"; kubectl describe -k $argv; end
 
-function kgts
+function kls
+  kubectl get secret $argv[1] -o json | jq '.data | keys[]';
+end
+
+function kgss
+  kubectl get secret $argv[1] -o json |\
+  jq --raw-output ". | .data.\"$argv[2]\"" |\
+  base64 -D
+end
+
+function kpss
+  kubectl patch secret $argv[1] \
+  --type=json \
+  -p="[{"op": "replace", "path": "/data/$argv[2]", "value": "\"(echo $argv[2] | base64)\""}]"
+end
+
+function kgsf
   kubectl get secret $argv[1] -o json |\
   jq --raw-output ". | .data.\"$argv[2]\"" |\
   base64 -D > $argv[2]
   echo "Created $argv[2]"
 end
 
-function kpts
+function kpsf
   kubectl patch secret $argv[1] \
   --type=json \
   -p="[{"op": "replace", "path": "/data/$argv[2]", "value": "\"(base64 $argv[2])\""}]"
