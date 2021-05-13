@@ -7,9 +7,16 @@ function ktl -w 'keytool -list -keystore'
     | sort
 end
 
-function ktls -w 'keytool -list -keystore'
+function ktc -w 'keytool -list -keystore'
   keytool -list \
     -v \
+    -keystore $argv[1] \
+    -alias $argv[2]
+end
+
+function ktcr -w 'keytool -list -keystore'
+  keytool -list \
+    -rfc \
     -keystore $argv[1] \
     -alias $argv[2]
 end
