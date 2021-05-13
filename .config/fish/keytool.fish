@@ -1,6 +1,6 @@
 function edit-keytool -w "vi $HOME/.config/fish/keytool.fish"; vi $HOME/.config/fish/keytool.fish $argv; end
 
-function ktls -w 'keytool -list -keystore'
+function ktl -w 'keytool -list -keystore'
   keytool -list \
     -keystore $argv[1] \
     | grep -v fingerprint
