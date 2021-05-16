@@ -83,6 +83,7 @@ function create-min-snow; yarn create snowpack-app $argv --template @snowpack/ap
 function serve-http -w "python -m SimpleHTTPServer 8000"; python -m SimpleHTTPServer 8000 $argv; end
 function serve-http3 -w "python3 -m http.server 8000 --bind 127.0.0.1"; python3 -m http.server 8000 --bind 127.0.0.1 $argv; end
 function get-port-app; lsof -nP -iTCP:$argv | grep LISTEN; end
+function curl-file -w "curl -OLC"; curl -OLC - $argv; end
 
 source $HOME/.config/fish/aws.fish
 source $HOME/.config/fish/docker.fish
