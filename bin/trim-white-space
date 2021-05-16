@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
-set -e
+set -euo pipefail
 
-sed -i '' -e's/[ \t]*$//' "$1"
+sed -i '' -e's/[[:blank:]]*$//' "$1"
