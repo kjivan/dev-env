@@ -12,3 +12,6 @@ function sslsiteexpire
 end
 
 function sslverify -w "openssl verify"; openssl verify $argv; end
+
+function sslcertbundle; openssl crl2pkcs7 -nocrl -certfile $argv | openssl pkcs7 -print_certs -noout; end
+function sslcertbundlev; openssl crl2pkcs7 -nocrl -certfile $argv | openssl pkcs7 -print_certs -text -noout; end
