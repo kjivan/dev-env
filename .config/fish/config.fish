@@ -45,8 +45,8 @@ if type -q rg
 end
 
 if type -q nvim
-    alias vim=nvim
-    alias vi=nvim
+    function vim -w 'nvim'; nvim $argv; end
+    function vi -w 'nvim'; nvim $argv; end
 end
 
 if type -q exa
