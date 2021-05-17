@@ -110,7 +110,7 @@ starship init fish | source
 
 if [ -z "$TMUX" ]
   # regex checks for unattached tmux session
-  if string match -r "\d{4}\)\$" (tmux ls &>/dev/null)
+  if string match -q -r "\d{4}\)\$" (tmux ls)
     tmux attach
   else
     tmux
