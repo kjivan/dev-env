@@ -74,6 +74,13 @@ else
     function diff -w "diff --color --ignore-space-change"; diff --color --ignore-space-change $argv; end
 end
 
+if type -q watchexec
+    function we -w 'watchexec'; watchexec $argv; end
+    function wee -w 'watchexec -e'; watchexec -e $argv; end
+    function wew -w 'watchexec -w'; watchexec -w $argv; end
+    function wef -w 'watchexec -f'; watchexec -f $argv; end
+end
+
 if type -q autossh
     function ssh; command autossh -M 0 $argv; end
 end
