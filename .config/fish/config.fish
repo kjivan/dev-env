@@ -108,17 +108,12 @@ direnv hook fish | source
 zoxide init fish | source
 starship init fish | source
 
-if type -q wemux
-  if [ -z "$TMUX" ]
-    wemux
-  end
-else
-  if [ -z "$TMUX" ]
-    if tmux ls &>/dev/null
-      tmux attach
-    else
-      tmux
-    end
+if [ -z "$TMUX" ]
+  # regex checks for unattached tmux session
+  if string match -r "\d{4}\)\$" (tmux ls) >/dev/null
+    tmux attach
+  else
+    tmux
   end
 end
 
