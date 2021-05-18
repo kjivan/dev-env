@@ -79,6 +79,15 @@ if type -q watchexec
     function wee -w 'watchexec -e'; watchexec -e $argv; end
     function wew -w 'watchexec -w'; watchexec -w $argv; end
     function wef -w 'watchexec -f'; watchexec -f $argv; end
+
+    function bashwatch -w 'watchexec -e sh,bash'; watchexec -e "sh,bash" $argv; end
+    function fishwatch -w 'watchexec -e fish'; watchexec -e "fish" $argv; end
+    function pywatch -w 'watchexec -e py'; watchexec -e "py" $argv; end
+    function jswatch -w 'watchexec -e js,ts'; watchexec -e "js,ts" $argv; end
+
+    function javawatch -w 'watchexec -e java'; watchexec -e "java" $argv; end
+    function cwatch -w 'watchexec -e c,cc,cpp,cxx,c++'; watchexec -e "c,cc,cpp,cxx,c++" $argv; end
+    function rswatch -w 'watchexec -e rs'; watchexec -e "rs" $argv; end
 end
 
 if type -q autossh
