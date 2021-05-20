@@ -87,7 +87,7 @@ set spelllang=en_us
 set iskeyword+=-
 
 filetype plugin on
-autocmd FileType cpp,java,gradle setlocal shiftwidth=4 softtabstop=4 tabstop=4 expandtab
+autocmd FileType cpp,gradle setlocal shiftwidth=4 softtabstop=4 tabstop=4 expandtab
 
 " remove trailing spaces
 function TrimWhiteSpace()
@@ -102,7 +102,7 @@ nnoremap <leader>p :Files<cr>
 nnoremap <leader>o :GFiles<cr>
 nnoremap <leader>c :GFiles?<cr>
 nnoremap <leader>b :Buffers<cr>
-let g:fzf_preview_window = 'right:hidden'
+let g:fzf_preview_window = ''
 
 " elm
 let g:elm_setup_keybindings = 0
