@@ -37,6 +37,9 @@ function kes -w "kubectl edit secrets"; kubectl edit secrets $argv; end
 function kgsvc -w "kubectl get services"; kubectl get services $argv; end
 function kdsvc -w "kubectl describe services"; kubectl describe services $argv; end
 function kesvc -w "kubectl edit services"; kubectl edit services $argv; end
+function kgi -w "kubectl get images"; kubectl get images $argv; end
+function kdi -w "kubectl describe images"; kubectl describe images $argv; end
+function kei -w "kubectl edit images"; kubectl edit images $argv; end
 
 function ks -w "kubectl scale deployments"; kubectl scale deployments $argv; end
 function ksdc -w "kubectl scale deploymentconfigs"; kubectl scale deploymentconfigs $argv; end
@@ -55,7 +58,7 @@ function kua -w "kubectl apply -k"; kubectl apply -k $argv; end
 function kug -w "kubectl get -k"; kubectl get -k $argv; end
 function kud -w "kubectl describe -k"; kubectl describe -k $argv; end
 
-function kls
+function kgsl
   kubectl get secret $argv[1] -o json | jq '.data | keys[]';
 end
 
