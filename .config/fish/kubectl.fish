@@ -9,6 +9,8 @@ function kar -w "kubectl api-resources"; kubectl api-resources $argv; end
 
 function kd -w "kubectl describe"; kubectl describe $argv; end
 function kl -w "kubectl logs"; kubectl logs $argv; end
+function kld -w "kubectl logs deployments/"; kubectl logs deployments/$argv; end
+function kldc -w "kubectl logs deploymentconfigs/"; kubectl logs deploymentconfigs/$argv; end
 function kdbg -w "kubectl debug"; kubectl debug $argv; end
 
 function kccc -w "kubectl config current-context"; kubectl config current-context $argv; end
