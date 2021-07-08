@@ -73,7 +73,7 @@ end
 function kpss
   kubectl patch secret $argv[1] \
   --type=json \
-  -p="[{"op": "replace", "path": "/data/$argv[2]", "value": "\"(echo $argv[2] | base64)\""}]"
+  -p="[{"op": "replace", "path": "/data/$argv[2]", "value": "\"(echo $argv[3] | base64)\""}]"
 end
 
 function kgsf
