@@ -21,6 +21,13 @@ function ktcr -w 'keytool -list -keystore'
     -alias $argv[2]
 end
 
+function ktcr -w 'keytool -list -keystore'
+  keytool -list \
+    -rfc \
+    -keystore $argv[1] \
+    -alias $argv[2]
+end
+
 function ktic -w 'keytool -import -keystore'
   keytool -import \
     -trustcacerts \
