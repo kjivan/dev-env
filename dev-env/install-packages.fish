@@ -40,7 +40,8 @@ now-cli \
 exercism \
 autossh \
 docker-completion \
-scc
+scc \
+lastpass-cli
 
 # rust
 curl https://sh.rustup.rs -sSf | bash -s -- -y
