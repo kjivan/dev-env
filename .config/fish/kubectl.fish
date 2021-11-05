@@ -60,8 +60,10 @@ function kua -w "kubectl apply -k"; kubectl apply -k $argv; end
 function kug -w "kubectl get -k"; kubectl get -k $argv; end
 function kud -w "kubectl describe -k"; kubectl describe -k $argv; end
 
+function kexec -w "kubectl exec -it"; kubectl exec -it $argv; end
+
 function kgsl
-  kubectl get secret $argv[1] -o json | jq '.data | keys[]';
+  kubectl get secret $argv -o json | jq '.data | keys[]';
 end
 
 function kgss
