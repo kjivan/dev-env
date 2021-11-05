@@ -8,7 +8,6 @@ fi
 
 
 export PATH="$HOME/.poetry/bin:$PATH"
-source "$HOME/.cargo/env"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

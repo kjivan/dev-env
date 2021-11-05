@@ -18,7 +18,8 @@ function dg -w "git --git-dir=$HOME/.dev-env.git/ --work-tree=$HOME"; git --git-
 
 function benchmark-shell; for i in (seq 1 10); /usr/bin/time fish -i -c exit; end; end
 function reload -w "source $HOME/.config/fish/config.fish"; source $HOME/.config/fish/config.fish $argv; end
-function edit -w "vi $HOME/.config/fish/config.fish"; vi $HOME/.config/fish/config.fish $argv; end
+function edit-fish -w "vi $HOME/.config/fish/config.fish"; vi $HOME/.config/fish/config.fish $argv; end
+function edit-alacritty -w "vi $HOME/.config/alacritty/alacritty.yml"; vi $HOME/.config/alacritty/alacritty.yml $argv; end
 
 if type -q sk
   set -gx SKIM_DEFAULT_OPTIONS '--ansi --color="fg:#458588,bg:#1d2021,hl:#98971a,fg+:#458588,hl+:#cc241d,info:#b16286"'
