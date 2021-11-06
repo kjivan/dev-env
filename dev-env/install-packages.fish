@@ -3,7 +3,6 @@ brew tap \
 homebrew/cask-fonts
 
 brew install \
-antibody \
 starship \
 wemux \
 neovim \
@@ -21,7 +20,7 @@ colordiff \
 git-delta \
 bat \
 htop \
-clementtsang/bottom/bottom \
+bottom \
 watchexec \
 ccze \
 git \
@@ -79,7 +78,6 @@ insomnia \
 insomnia-designer \
 simplenote \
 notion \
-grammarly \
 font-lato \
 font-open-sans \
 font-raleway \
