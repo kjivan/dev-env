@@ -6,6 +6,8 @@
   rebase = true
 [rebase]
   autoStash = true
+[submodule]
+  recurse = true
 [status]
   submoduleSummary = true
 [diff]
