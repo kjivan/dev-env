@@ -3,5 +3,5 @@ truncation_length = 20
 [aws]
 disabled = true
 [kubernetes]
-format = '[☸  $context \($namespace\)](blue) '
+format = '[☸  $context \($namespace\)](bold blue) '
 disabled = false
