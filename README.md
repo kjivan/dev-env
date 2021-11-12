@@ -3,6 +3,7 @@
 Feel free to fork and manipulate the repo as you see fit. If you think I'll like something feel free to submit a pull request.
 
 ## Scripts
+- dev-env/configure-mac.bash - macos conigurations
 - dev-env/install-brew-fish.bash - Install brew and fish
 - dev-env/setup-dev-env.bash - Checkout kjivan dev-env as a [bare git repo](https://www.atlassian.com/git/tutorials/dotfiles) overlayed with your home directory
 - dev-env/install-packages.fish - Install the packages I use most frequently (designed to be fast and idempotent)
