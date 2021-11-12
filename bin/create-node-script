@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+script_name=${1:-script.sh}
+
+(
+cat << 'EOF'
+#!/usr/bin/env node
+
+var myArgs = process.argv.slice(2);
+if ( myArgs < 2 ) {
+  console.log( `Usage: ${process.argv[1].split('/').reverse()[0]}  file` )
+  process.exit(1);
+}
+EOF
+) > $script_name
+
+chmod +x $script_name
