@@ -54,6 +54,9 @@ function kgi -w "kubectl get ingress"; kubectl get ingress $argv; end
 function kdi -w "kubectl describe ingress"; kubectl describe ingress $argv; end
 function kei -w "kubectl edit ingress"; kubectl edit ingress $argv; end
 
+function kges -w "kubectl get externalsecrets"; kubectl get externalsecrets $argv; end
+function kdes -w "kubectl describe externalsecrets"; kubectl describe externalsecrets $argv; end
+function kees -w "kubectl edit externalsecrets"; kubectl edit externalsecrets $argv; end
 function kgs -w "kubectl get secrets"; kubectl get secrets $argv; end
 function kds -w "kubectl describe secrets"; kubectl describe secrets $argv; end
 function kes -w "kubectl edit secrets"; kubectl edit secrets $argv; end
