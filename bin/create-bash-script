@@ -8,7 +8,7 @@ cat << 'EOF'
 #!/usr/bin/env bash
 set -euo pipefail
 
-if [ \$# -ne 1 ]; then echo "Usage: \$0 file"; fi
+if [ \$# -ne 1 ]; then echo "Usage: \$0 file"; exit 1; fi
 EOF
 ) > $script_name
 
