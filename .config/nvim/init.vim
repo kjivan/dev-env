@@ -33,9 +33,16 @@ Plug 'tomtom/tcomment_vim'
 Plug 'luochen1990/rainbow'
 
 Plug 'neovim/nvim-lspconfig'
-Plug 'kabouzeid/nvim-lspinstall'
-Plug 'hrsh7th/nvim-compe'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
 
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
+
+Plug 'williamboman/nvim-lsp-installer'
 call plug#end()
 
 " leader
@@ -145,4 +152,4 @@ nnoremap <leader>j :cn <cr>
 nnoremap <leader>k :cp <cr>
 
 source $HOME/.config/nvim/lsp.vim
-source $HOME/.config/nvim/compe.vim
+source $HOME/.config/nvim/cmp.vim
