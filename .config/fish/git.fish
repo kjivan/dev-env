@@ -121,13 +121,15 @@ function gsubplom -w "git submodule foreach git pull origin (git_main_branch)"; 
 function gsubs -w "git submodule status"; git submodule status $argv; end
 function gsubu -w "git submodule update --remote --merge"; git submodule update --remote --merge $argv; end
 
-function gt -w "git tag --sort="-taggerdate""; git tag --sort="-taggerdate" $argv; end
-function gt1 -w "gt | head -n 1"; gt | head -n 1 $argv; end
+function gt -w "git tag"; git tag $argv; end
+function gtp -w "git tag"; git tag $argv; git push $argv; end
+function gtl -w "git tag --format='%(creatordate:short)%09%(refname:strip=2)' --sort=-creatordate"; git tag --format='%(creatordate:short)%09%(refname:strip=2)' --sort=-creatordate; end
+function gt1 -w "gtl | head -n 1"; gtl | head -n 1 $argv; end
 function gtam -w "git tag -am"; git tag -am $argv; end
 function gtsm -w "git tag -sm"; git tag -sm $argv; end
 function gtd -w "git tag --delete"; git tag --delete $argv; end
-function gtl -w "git tag --list"; git tag --list $argv; end
-function gtls -w "git tag --list | cat"; git tag --list | cat $argv; end
+
+function gdt -w "git describe --tags"; git describe --tags $argv; end
 
 function gwch -w "git whatchanged -p --date=format:'%A %B %d %Y at %H:%M' --pretty=format:'%n%n%C(yellow)%H%Creset%x09%C(bold green)%D%Creset%n%<|(40)%C(white)%ad%x09%an%Creset%n%n    %C(bold)%s%Creset%n%w(0,4,4)%+b%n'"; git whatchanged -p --date=format:'%A %B %d %Y at %H:%M' --pretty=format:'%n%n%C(yellow)%H%Creset%x09%C(bold green)%D%Creset%n%<|(40)%C(white)%ad%x09%an%Creset%n%n    %C(bold)%s%Creset%n%w(0,4,4)%+b%n' $argv; end
 
