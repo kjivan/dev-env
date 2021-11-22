@@ -61,7 +61,7 @@ nmap <leader>wr :lua vim.lsp.buf.remove_workspace_folder()<cr>
 nmap <leader>wl :lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>
 nmap <leader>D :lua vim.lsp.buf.type_definition()<cr>
 nmap <leader>rn :lua vim.lsp.buf.rename()<cr>
-nmap <leader>e :lua vim.lsp.diagnostic.show_line_diagnostics()<cr>
+nmap <leader>d :lua vim.lsp.diagnostic.show_line_diagnostics()<cr>
 nmap [d :lua vim.lsp.diagnostic.goto_prev()<cr>
 nmap ]d :lua vim.lsp.diagnostic.goto_next()<cr>
 nmap <leader>ll :lua vim.lsp.diagnostic.set_loclist()<cr>
