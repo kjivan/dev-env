@@ -15,7 +15,7 @@ function grdns -w "./gradlew npmStart"; ./gradlew npmStart $argv; end
 function grdcns -w "./gradlew clean npmStart"; ./gradlew clean npmStart $argv; end
 
 function grdt -w "./gradlew test"; ./gradlew test $argv; end
-function grdct -w "./gradlew clean test"; ./gradlew clean test $argv; end
+function grdct -w "./gradlew cleanTest test"; ./gradlew clean test $argv; end
 
 function grdt4; ./gradlew test  2>&1 | rg error -A2 | head -n12 $argv; end
 function grdb4; ./gradlew build  2>&1 | rg error -A2 | head -n12 $argv; end
