@@ -95,6 +95,7 @@ set iskeyword+=-
 
 filetype plugin on
 autocmd FileType cpp,gradle setlocal shiftwidth=4 softtabstop=4 tabstop=4 expandtab
+autocmd FileType go setlocal shiftwidth=4 softtabstop=4 tabstop=4 noexpandtab
 
 " remove trailing spaces
 function TrimWhiteSpace()
