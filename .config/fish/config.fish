@@ -89,6 +89,8 @@ if type -q watchexec
     function javawatch -w 'watchexec -e java'; watchexec -e "java" $argv; end
     function cwatch -w 'watchexec -e c,cc,cpp,cxx,c++'; watchexec -e "c,cc,cpp,cxx,c++" $argv; end
     function rswatch -w 'watchexec -e rs'; watchexec -e "rs" $argv; end
+
+    function grdwatch -w 'watchexec -e gradle'; watchexec -e "gradle" $argv; end
 end
 
 if type -q autossh

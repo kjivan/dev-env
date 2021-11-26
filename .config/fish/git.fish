@@ -47,9 +47,9 @@ function gcp -w "git cherry-pick"; git cherry-pick $argv; end
 function gcpa -w "git cherry-pick --abort"; git cherry-pick --abort $argv; end
 function gcpc -w "git cherry-pick --continue"; git cherry-pick --continue $argv; end
 
-function gd -w "git diff"; git diff $argv; end
-function gds -w "git diff --staged"; git diff --staged $argv; end
-function gdst -w "git diff stash@{0}"; git diff stash@{0} $argv; end
+function gd -w "git diff -w"; git diff -w $argv; end
+function gds -w "git diff -w --staged"; git diff -w --staged $argv; end
+function gdst -w "git diff -w stash@{0}"; git diff -w stash@{0} $argv; end
 
 function gf -w "git fetch"; git fetch $argv; end
 function gfo -w "git fetch origin"; git fetch origin $argv; end
