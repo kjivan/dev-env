@@ -17,5 +17,6 @@
     "java.import.gradle.java.home": "/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home/",
     "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:\"/Users/kjivan/.vscode/extensions/gabrielbb.vscode-lombok-1.0.1/server/lombok.jar\"",
     "redhat.telemetry.enabled": false,
-    "mssql.connections": []
+    "mssql.connections": [],
+    "files.autoSave": "afterDelay"
 }

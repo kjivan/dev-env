@@ -72,5 +72,36 @@
         "key": "alt+tab",
         "command": "-workbench.action.focusNextGroup",
         "when": "editorFocus"
+    },
+    {
+        "key": "cmd+,",
+        "command": "workbench.action.openSettings2"
+    },
+    {
+        "key": "cmd+'",
+        "command": "-ms-azurecli.runLineInTerminal",
+        "when": "editorTextFocus && editorLangId == 'azcli'"
+    },
+    {
+        "key": "shift+cmd+'",
+        "command": "-ms-azurecli.runLineInEditor",
+        "when": "editorTextFocus && editorLangId == 'azcli'"
+    },
+    {
+        "key": "shift+cmd+,",
+        "command": "-editor.action.inPlaceReplace.up",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "cmd+,",
+        "command": "-workbench.action.openGlobalSettings"
+    },
+    {
+        "key": "cmd+,",
+        "command": "-workbench.action.openSettings"
+    },
+    {
+        "key": "shift+cmd+,",
+        "command": "workbench.action.openSettingsJson"
     }
 ]
