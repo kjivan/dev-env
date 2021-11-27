@@ -8,6 +8,7 @@ function grdrefresh -w "./gradlew --refresh-dependencies"; ./gradlew --refresh-d
 
 
 function grdb -w "./gradlew build"; ./gradlew build $argv; end
+function grdb2; divider; ./gradlew build 2>&1 | rg error -A2 | head -n6 $argv; end
 function grdcb -w "./gradlew clean build"; ./gradlew clean build $argv; end
 function grdcbp -w "./gradlew clean build publishToMavenLocal"; ./gradlew clean build publishToMavenLocal $argv; end
 
@@ -24,12 +25,11 @@ function grdns -w "./gradlew npmStart"; ./gradlew npmStart $argv; end
 function grdcns -w "./gradlew clean npmStart"; ./gradlew clean npmStart $argv; end
 
 function grdt -w "./gradlew test"; ./gradlew test $argv; end
+function grdt2; divider; ./gradlew test 2>&1 | rg error -A2 | head -n6; end
 function grdtt -w "./gradlew test --tests"; ./gradlew test --tests $argv; end
+function grdtt2; divider; ./gradlew test --tests $argv 2>&1 | rg error -A2 | head -n6; end
 function grdct -w "./gradlew cleanTest test"; ./gradlew clean test $argv; end
 
 function grdit -w "./gradlew :integrationTest"; ./gradlew :integrationTest $argv; end
 function grditt -w "./gradlew :integrationTest --tests"; ./gradlew :integrationTest --tests $argv; end
 function grdcit -w "./gradlew clean :integrationTest"; ./gradlew clean :integrationTest $argv; end
-
-function grdt4; ./gradlew test  2>&1 | rg error -A2 | head -n12 $argv; end
-function grdb4; ./gradlew build  2>&1 | rg error -A2 | head -n12 $argv; end
