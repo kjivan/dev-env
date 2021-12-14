@@ -32,6 +32,9 @@ Plug 'cohama/lexima.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'luochen1990/rainbow'
 
+Plug 'mattn/webapi-vim'
+Plug 'mattn/vim-gist'
+
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
