@@ -3,7 +3,7 @@ function edit-gradle -w "vi $HOME/.config/fish/gradle.fish"; vi $HOME/.config/fi
 function grd -w "./gradlew"; ./gradlew $argv; end
 function grdtsk -w "./gradlew tasks"; ./gradlew tasks $argv; end
 function grddep -w "./gradlew dependencies"; ./gradlew dependencies $argv; end
-function grdspot -w "./gradlew :spotlessApply"; ./gradlew :spotlessApply $argv; end
+function grdspot -w "./gradlew spotlessApply"; ./gradlew :spotlessApply $argv; end
 function grdrefresh -w "./gradlew --refresh-dependencies"; ./gradlew --refresh-dependencies $argv; end
 
 function grdb -w "./gradlew build"; ./gradlew build $argv; end
