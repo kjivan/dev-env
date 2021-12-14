@@ -18,5 +18,18 @@
     "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:\"/Users/kjivan/.vscode/extensions/gabrielbb.vscode-lombok-1.0.1/server/lombok.jar\"",
     "redhat.telemetry.enabled": false,
     "mssql.connections": [],
-    "files.autoSave": "afterDelay"
+    "files.autoSave": "afterDelay",
+        "[java]": {
+          "spotlessGradle.format.enable": true,
+          "spotlessGradle.diagnostics.enable": true,
+          "editor.codeActionsOnSave": {
+            "source.fixAll.spotlessGradle": true
+          },
+          "editor.defaultFormatter": "richardwillis.vscode-spotless-gradle",
+          "files.trimTrailingWhitespace": false
+        },
+    "microprofile.alwaysShowOverview": false,
+    "workbench.iconTheme": "material-icon-theme",
+    "security.workspace.trust.untrustedFiles": "open",
+    "workbench.startupEditor": "none"
 }

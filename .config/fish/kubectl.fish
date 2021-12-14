@@ -104,3 +104,9 @@ function kpsf
   --type=json \
   -p="[{"op": "replace", "path": "/data/$argv[2]", "value": "\"(base64 $argv[2])\""}]"
 end
+
+function kgsaf
+  kubectl get secret $argv[1] -o json |\
+  jq --raw-output ".data | to_entries | map([.key, .value]) | .[] | @tsv" |\
+  xargs -n2 -P 2 -- bash -c 'echo "$1" | base64 -D > $0'
+end
