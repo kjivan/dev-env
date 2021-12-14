@@ -122,7 +122,7 @@ function gsubs -w "git submodule status"; git submodule status $argv; end
 function gsubu -w "git submodule update --remote --merge"; git submodule update --remote --merge $argv; end
 
 function gt -w "git tag"; git tag $argv; end
-function gtp -w "git tag"; git tag $argv; git push $argv; end
+function gtp -w "git tag"; git tag $argv; git push origin $argv; end
 function gtl -w "git tag --format='%(creatordate:short)%09%(refname:strip=2)' --sort=-creatordate"; git tag --format='%(creatordate:short)%09%(refname:strip=2)' --sort=-creatordate; end
 function gt1 -w "gtl | head -n 1"; gtl | head -n 1 $argv; end
 function gtam -w "git tag -am"; git tag -am $argv; end

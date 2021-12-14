@@ -65,8 +65,8 @@ nmap <leader>d :lua vim.lsp.diagnostic.show_line_diagnostics()<cr>
 nmap [d :lua vim.lsp.diagnostic.goto_prev()<cr>
 nmap ]d :lua vim.lsp.diagnostic.goto_next()<cr>
 nmap <leader>ll :lua vim.lsp.diagnostic.set_loclist()<cr>
-nmap <leader>ff :lua vim.lsp.buf.formatting()<cr>
-xmap <leader>ff :lua vim.lsp.buf.range_formatting()<cr>
+nmap <leader>fr :lua vim.lsp.buf.formatting()<cr>
+xmap <leader>fr :lua vim.lsp.buf.range_formatting()<cr>
 nmap <leader>a :lua vim.lsp.buf.code_action()<cr>
 xmap <leader>a :lua vim.lsp.buf.range_code_action()<cr>
 nmap <leader>fp :silent ! prettier -w %<cr>
