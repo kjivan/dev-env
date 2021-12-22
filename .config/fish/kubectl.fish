@@ -42,6 +42,10 @@ function krosss -w "kubectl rollout status statefulsets"; kubectl rollout status
 function krohss -w "kubectl rollout history statefulsets"; kubectl rollout history statefulsets $argv; end
 function krouss -w "kubectl rollout undo statefulsets"; kubectl rollout undo statefulsets $argv; end
 
+function kgrs -w "kubectl get replicasets"; kubectl get replicasets $argv; end
+function kdrs -w "kubectl describe replicasets"; kubectl describe replicasets $argv; end
+function kers -w "kubectl edit replicasets"; kubectl edit replicasets $argv; end
+
 function kgp -w "kubectl get pods"; kubectl get pods $argv; end
 function kdp -w "kubectl describe pods"; kubectl describe pods $argv; end
 function kep -w "kubectl edit pods"; kubectl edit pods $argv; end
