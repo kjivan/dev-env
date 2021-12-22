@@ -128,6 +128,7 @@ function gt1 -w "gtl | head -n 1"; gtl | head -n 1 $argv; end
 function gtam -w "git tag -am"; git tag -am $argv; end
 function gtsm -w "git tag -sm"; git tag -sm $argv; end
 function gtd -w "git tag --delete"; git tag --delete $argv; end
+function gtdp -w "git tag --delete"; git tag --delete $argv; git push --delete origin $argv; end
 
 function gdt -w "git describe --tags"; git describe --tags $argv; end
 
