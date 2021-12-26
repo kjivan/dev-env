@@ -31,6 +31,7 @@ gh \
 golang \
 jq \
 python3 \
+pdm \
 node \
 nvm \
 yarn \
@@ -92,7 +93,6 @@ setuptools \
 wheel
 
 pip3 install \
-pdm \
 neovim \
 pylint \
 flake8
