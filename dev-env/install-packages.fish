@@ -65,7 +65,7 @@ if test ! (grep kern.maxfilesperproc=1048576 /etc/sysctl.conf)
     sudo fish -c 'echo kern.maxfilesperproc=1048576 >> /etc/sysctl.conf'
 end
 
-brew cask install \
+brew install \
 google-chrome \
 brave-browser \
 spectacle \
@@ -92,15 +92,12 @@ setuptools \
 wheel
 
 pip3 install \
-virtualenv \
-cookiecutter \
+pdm \
 neovim \
 pylint \
 flake8
 
-curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
-
-npm install -g \
+yarn global add --ignore-engines \
 typescript \
 eslint \
 eslint-config-prettier \
