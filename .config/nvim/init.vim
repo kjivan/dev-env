@@ -78,6 +78,10 @@ nmap <silent> <leader>v :e $MYVIMRC<cr>
 nmap <silent> <leader>vv :so $MYVIMRC<cr>
 nnoremap <leader>q :q<CR>
 nmap <silent> <leader>/ :nohlsearch<cr>
+nnoremap <silent><Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent><Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+nnoremap <silent><Leader>> :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
+nnoremap <silent><Leader>< :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
 
 " git gutter
 let g:gitgutter_highlight_lines = 0
