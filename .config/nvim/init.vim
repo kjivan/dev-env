@@ -91,7 +91,7 @@ nmap [h <Plug>(GitGutterPrevHunk)
 " settings
 set relativenumber
 set number
-set list listchars=tab:▸-,trail:.,extends:>
+set list listchars=tab:▸\ ,trail:.,extends:>
 set showmatch
 set incsearch ignorecase smartcase
 set noswapfile
