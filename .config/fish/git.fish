@@ -10,6 +10,7 @@ function gai -w "git add --interactive"; git add --interactive $argv; end
 function gb -w "git branch"; git branch $argv; end
 function gba -w "git branch --all"; git branch --all $argv; end
 function gbd -w "git branch --delete"; git branch --delete $argv; end
+function gbdp -w "git branch --delete"; git branch --delete $argv; git push origin --delete $argv; end
 function gbdf -w "git branch --delete --force"; git branch --delete --force $argv; end
 function gbl -w "git blame"; git blame $argv; end
 function gbls -w "git branch --list | cat"; git branch --list | cat $argv; end
