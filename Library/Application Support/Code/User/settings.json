@@ -31,5 +31,7 @@
     "microprofile.alwaysShowOverview": false,
     "workbench.iconTheme": "material-icon-theme",
     "security.workspace.trust.untrustedFiles": "open",
-    "workbench.startupEditor": "none"
+    "workbench.startupEditor": "none",
+    "bracket-pair-colorizer-2.depreciation-notice": false,
+    "spotlessGradle.format.enable": true
 }

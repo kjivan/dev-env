@@ -10,3 +10,4 @@ function dbr -w "docker run -it (docker build -q .)"; docker run $argv -it (dock
 function dbrc -w "docker run --rm -it (docker build -q .)"; docker run $argv --rm -it (docker build -q .); end
 
 function docker-stop-all -w "docker stop (docker ps -q)"; docker stop (docker ps -q); end
+function docker-clean-all -w "docker system prune --volumes"; docker system prune --volumes; end
