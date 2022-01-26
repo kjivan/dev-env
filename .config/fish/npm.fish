@@ -1,5 +1,7 @@
 function edit-npm -w "vi $HOME/.config/fish/npm.fish"; vi $HOME/.config/fish/npm.fish $argv; end
 
+function ni -w "npm install"; npm install $argv; end
+
 function nrs -w "npm run start"; npm run start $argv; end
 function nrb -w "npm run build"; npm run build $argv; end
 function nrt -w "npm run test"; npm run test $argv; end
