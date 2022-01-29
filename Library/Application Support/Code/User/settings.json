@@ -33,5 +33,7 @@
     "security.workspace.trust.untrustedFiles": "open",
     "workbench.startupEditor": "none",
     "bracket-pair-colorizer-2.depreciation-notice": false,
-    "spotlessGradle.format.enable": true
+    "spotlessGradle.format.enable": true,
+    "extensions.ignoreRecommendations": true,
+    "debug.allowBreakpointsEverywhere": true
 }
