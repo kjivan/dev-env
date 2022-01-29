@@ -36,6 +36,7 @@ Plug 'mattn/webapi-vim'
 Plug 'mattn/vim-gist'
 
 Plug 'neovim/nvim-lspconfig'
+Plug 'glepnir/lspsaga.nvim'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'

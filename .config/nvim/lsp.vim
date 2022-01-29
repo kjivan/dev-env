@@ -1,5 +1,16 @@
 lua << EOF
 local nvim_lsp = require('lspconfig')
+local saga = require 'lspsaga'
+saga.init_lsp_saga {
+  use_saga_diagnostic_sign = false,
+  infor_sign = '',
+-- error_sign = '',
+-- warn_sign = '',
+-- hint_sign = '',
+-- infor_sign = '',
+-- dianostic_header_icon = '   ',
+ code_action_icon = '',
+}
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -70,3 +81,6 @@ xmap <leader>fr :lua vim.lsp.buf.range_formatting()<cr>
 nmap <leader>a :lua vim.lsp.buf.code_action()<cr>
 xmap <leader>a :lua vim.lsp.buf.range_code_action()<cr>
 nmap <leader>fp :silent ! prettier -w %<cr>
+nnoremap <silent> gh :Lspsaga lsp_finder<CR>
+nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
+nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
