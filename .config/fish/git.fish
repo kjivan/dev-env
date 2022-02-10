@@ -21,16 +21,15 @@ function gbsr -w "git bisect reset"; git bisect reset $argv; end
 function gbss -w "git bisect start"; git bisect start $argv; end
 
 function gc -w "git commit --verbose"; git commit --verbose $argv; end
+function gca -w "git commit -a --verbose"; git commit -a --verbose $argv; end
 function gcam -w "git commit -am"; git commit -am $argv; end
-function gcame -w "git commit --allow-empty-message -am """; git commit --allow-empty-message -am "" $argv; end
-function gcamg -w "git commit --gpg-sign -am"; git commit --gpg-sign -am $argv; end
-function gcams -w "git commit --signoff -am"; git commit --signoff -am $argv; end
 function gcamu -w "git commit -am "Update""; git commit -am "Update" $argv; end
 function gcem -w "git commit --allow-empty -m"; git commit --allow-empty -m $argv; end
-function gcaam -w "git commit --amend -m"; git commit --amend -m $argv; end
-function gcaama -w "git commit --amend -am"; git commit --amend -am $argv; end
-function gcaan -w "git commit --amend --no-edit"; git commit --amend --no-edit $argv; end
-function gcaana -w "git commit --amend --no-edit -a"; git commit --amend --no-edit -a $argv; end
+function gcame -w "git commit --amend"; git commit --amend $argv; end
+function gcamm -w "git commit --amend -m"; git commit --amend -m $argv; end
+function gcamam -w "git commit --amend -am"; git commit --amend -am $argv; end
+function gcamn -w "git commit --amend --no-edit"; git commit --amend --no-edit $argv; end
+function gcaman -w "git commit --amend -a --no-edit"; git commit --amend -a --no-edit $argv; end
 function gcf -w "git config"; git config $argv; end
 function gcfl -w "git config --list"; git config --list $argv; end
 function gcfls -w "git config --list | cat"; git config --list | cat $argv; end
