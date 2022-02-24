@@ -22,6 +22,7 @@ function edit-fish -w "vi $HOME/.config/fish/config.fish"; vi $HOME/.config/fish
 function edit-alacritty -w "vi $HOME/.config/alacritty/alacritty.yml"; vi $HOME/.config/alacritty/alacritty.yml $argv; end
 
 function divider; echo --------------------------------------------------------------------------------; end
+function notify-done; osascript -e 'display notification "Task Completed" with title "Done"'; end
 
 if type -q sk
   set -gx SKIM_DEFAULT_OPTIONS '--ansi --color="fg:#458588,bg:#1d2021,hl:#98971a,fg+:#458588,hl+:#cc241d,info:#b16286"'
