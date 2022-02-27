@@ -114,10 +114,11 @@ source $HOME/.config/fish/docker.fish
 source $HOME/.config/fish/gh.fish
 source $HOME/.config/fish/git.fish
 source $HOME/.config/fish/gradle.fish
+source $HOME/.config/fish/keytool.fish
 source $HOME/.config/fish/kubectl.fish
 source $HOME/.config/fish/npm.fish
 source $HOME/.config/fish/openssl.fish
-source $HOME/.config/fish/keytool.fish
+source $HOME/.config/fish/yarn.fish
 
 [ -f $HOME/.local.fish ] && source $HOME/.local.fish
 

@@ -1,6 +1,6 @@
 function edit-yarn -w "vi $HOME/.config/fish/yarn.fish"; vi $HOME/.config/fish/yarn.fish $argv; end
 
-function yi -w "yarn install"; yarn install $argv; end
+function y -w "yarn"; yarn $argv; end
 
 function yrs -w "yarn run start"; yarn run start $argv; end
 function yrb -w "yarn run build"; yarn run build $argv; end
