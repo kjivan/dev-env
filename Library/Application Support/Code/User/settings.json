@@ -35,5 +35,6 @@
     "bracket-pair-colorizer-2.depreciation-notice": false,
     "spotlessGradle.format.enable": true,
     "extensions.ignoreRecommendations": true,
-    "debug.allowBreakpointsEverywhere": true
+    "debug.allowBreakpointsEverywhere": true,
+    "update.mode": "manual"
 }
