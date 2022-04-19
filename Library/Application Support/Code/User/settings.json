@@ -36,5 +36,12 @@
     "spotlessGradle.format.enable": true,
     "extensions.ignoreRecommendations": true,
     "debug.allowBreakpointsEverywhere": true,
-    "update.mode": "manual"
+    "update.mode": "manual",
+    "java.configuration.runtimes": [
+        {
+          "name": "JavaSE-11",
+          "path": "/Library/Java/JavaVirtualMachines/jdk-11.0.12.jdk/Contents/Home",
+          "default": true
+        }
+      ]
 }
