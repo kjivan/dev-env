@@ -7,6 +7,7 @@ bind \co kill-line
 [ -d $HOME/.cargo/bin ] && set -gx PATH $PATH $HOME/.cargo/bin
 [ -d $HOME/.poetry/bin ] && set -gx PATH $PATH $HOME/.poetry/bin
 [ -d $HOME/bin ] && set -gx PATH $PATH $HOME/bin
+[ -d $HOME/opt/anaconda3/bin ] && set -gx PATH $PATH $HOME/opt/anaconda3/bin
 
 set -gx fish_greeting ""
 
