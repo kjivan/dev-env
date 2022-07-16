@@ -41,8 +41,7 @@ function gco -w "git checkout"; git checkout $argv; end
 function gcop -w "git checkout --patch"; git checkout --patch $argv; end
 function gcob -w "git checkout -b"; git checkout -b $argv; end
 function gcobb -w "git checkout -"; git checkout - $argv; end
-function gcod -w "git checkout develop"; git checkout develop $argv; end
-function gcom -w "git checkout (git_main_branch)"; git checkout (git_main_branch) $argv; end
+function gcom -w "git checkout (gmb)"; git checkout (gmb) $argv; end
 function gcp -w "git cherry-pick"; git cherry-pick $argv; end
 function gcpa -w "git cherry-pick --abort"; git cherry-pick --abort $argv; end
 function gcpc -w "git cherry-pick --continue"; git cherry-pick --continue $argv; end
@@ -69,8 +68,8 @@ function glt -w "git log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen
 function gld -w "glt --date=short"; glt --date=short $argv; end
 
 function gm -w "git merge"; git merge $argv; end
-function gmom -w "git merge origin/(git_main_branch)"; git merge origin/(git_main_branch) $argv; end
-function gmum -w "git merge upstream/(git_main_branch)"; git merge upstream/(git_main_branch) $argv; end
+function gmom -w "git merge origin/(gmb)"; git merge origin/(gmb) $argv; end
+function gmum -w "git merge upstream/(gmb)"; git merge upstream/(gmb) $argv; end
 function gmv -w "git mv"; git mv $argv; end
 
 function gp -w "git push"; git push $argv; end
@@ -92,7 +91,7 @@ function grhhard -w "git reset head --hard"; git reset head --hard $argv; end
 function grhk -w "git reset head --keep"; git reset head --keep $argv; end
 function grhs -w "git reset head --soft"; git reset head --soft $argv; end
 function grb -w "git rebase"; git rebase $argv; end
-function grbm -w "git rebase (git_main_branch)"; git rebase (git_main_branch) $argv; end
+function grbm -w "git rebase (gmb)"; git rebase (gmb) $argv; end
 function grem -w "git remote"; git remote $argv; end
 function grema -w "git remote add"; git remote add $argv; end
 function gremrm -w "git remote rm"; git remote rm $argv; end
@@ -117,7 +116,7 @@ function gsub -w "git submodule"; git submodule $argv; end
 function gsuba -w "git submodule add"; git submodule add $argv; end
 function gsubi -w "git submodule update --init"; git submodule update --init $argv; end
 function gsubpl -w "git submodule foreach git pull"; git submodule foreach git pull $argv; end
-function gsubplom -w "git submodule foreach git pull origin (git_main_branch)"; git submodule foreach git pull origin (git_main_branch) $argv; end
+function gsubplom -w "git submodule foreach git pull origin (gmb)"; git submodule foreach git pull origin (gmb) $argv; end
 function gsubs -w "git submodule status"; git submodule status $argv; end
 function gsubu -w "git submodule update --remote --merge"; git submodule update --remote --merge $argv; end
 
@@ -134,20 +133,13 @@ function gdt -w "git describe --tags"; git describe --tags $argv; end
 
 function gwch -w "git whatchanged -p --date=format:'%A %B %d %Y at %H:%M' --pretty=format:'%n%n%C(yellow)%H%Creset%x09%C(bold green)%D%Creset%n%<|(40)%C(white)%ad%x09%an%Creset%n%n    %C(bold)%s%Creset%n%w(0,4,4)%+b%n'"; git whatchanged -p --date=format:'%A %B %d %Y at %H:%M' --pretty=format:'%n%n%C(yellow)%H%Creset%x09%C(bold green)%D%Creset%n%<|(40)%C(white)%ad%x09%an%Creset%n%n    %C(bold)%s%Creset%n%w(0,4,4)%+b%n' $argv; end
 
-function git-delete-working-branches -w "git branch | grep -v '.*develop\|.*master\|.*main' | xargs git branch -D"; git branch | grep -v '.*develop\|.*master\|.*main' | xargs git branch -D $argv; end
-function git-purge -w "git checkout develop; git reset --hard HEAD develop; git clean -dfx; git pull"; git checkout develop; git reset --hard HEAD develop; git clean -dfx; git pull $argv; end
+function gmb; git remote show origin | grep 'HEAD branch' | cut -d' ' -f5; end
+function git-delete-working-branches -w "git branch | grep -v (gmb) | xargs git branch -D"; git branch | grep -v (gmb) | xargs git branch -D $argv; end
+function git-purge -w "git checkout (gmb); git reset --hard HEAD (gmb); git clean -dfx; git pull"; git checkout (gmb); git reset --hard HEAD (gmb); git clean -dfx; git pull $argv; end
 function git-reset-repo -w "git-purge; git-delete-working-branches"; git-purge; git-delete-working-branches $argv; end
 
-function git_main_branch
-  if [ (git branch | grep "main") ]
-    echo main
-  else
-    echo master
-  end
-end
-
 function gcb
-  git checkout develop
+  git checkout (gmb)
   git pull
   git checkout -b $argv
   git push --set-upstream origin $argv
