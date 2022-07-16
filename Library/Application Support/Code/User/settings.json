@@ -44,5 +44,8 @@
           "path": "/Library/Java/JavaVirtualMachines/jdk-11.0.12.jdk/Contents/Home",
           "default": true
         }
-      ]
+      ],
+      "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+      }
 }
