@@ -42,7 +42,7 @@ scc \
 lastpass-cli
 
 # rust
-curl https://sh.rustup.rs -sSf | bash -s -- -y
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 rustup component add rls rust-analysis rust-src
 
 [ ! -d $HOME/.tmux/plugins ] && mkdir -p $HOME/.tmux/plugins
@@ -70,6 +70,7 @@ docker \
 slack \
 discord \
 signal \
+dash \
 insomnia \
 simplenote \
 notion \
