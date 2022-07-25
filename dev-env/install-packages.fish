@@ -24,6 +24,7 @@ htop \
 bottom \
 watchexec \
 ccze \
+svn \
 git \
 git-flow \
 httpie \
@@ -37,7 +38,6 @@ node \
 yarn \
 exercism \
 autossh \
-docker-completion \
 scc \
 lastpass-cli
 
