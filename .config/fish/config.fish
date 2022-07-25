@@ -3,6 +3,7 @@
 bind \co kill-line
 
 [ -d /usr/local/sbin ] && set -g PATH "/usr/local/sbin" $PATH
+[ -d /opt/homebrew/bin ] && set -g PATH "/opt/homebrew/bin" $PATH
 [ -d $HOME/go ] && set -gx GOPATH $HOME/go
 [ -d $HOME/.cargo/bin ] && set -gx PATH $PATH $HOME/.cargo/bin
 [ -d $HOME/.poetry/bin ] && set -gx PATH $PATH $HOME/.poetry/bin

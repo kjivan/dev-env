@@ -6,6 +6,7 @@ window:
   startup_mode: Maximized
   title: Alacritty
   dynamic_title: false
+  opacity: 1.00
 
 scrolling:
   history: 10000
@@ -72,8 +73,6 @@ colors:
     magenta: '#d3869b'
     cyan:    '#8ec07c'
     white:   '#ebdbb2'
-
-background_opacity: 1.00
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"

@@ -4,7 +4,7 @@ homebrew/cask-fonts
 
 brew install \
 starship \
-wemux \
+tmux \
 neovim \
 ripgrep \
 semgrep \
@@ -19,6 +19,7 @@ exa \
 colordiff \
 git-delta \
 bat \
+direnv \
 htop \
 bottom \
 watchexec \
@@ -33,10 +34,7 @@ jq \
 python3 \
 pdm \
 node \
-nvm \
 yarn \
-netlify-cli \
-now-cli \
 exercism \
 autossh \
 docker-completion \
@@ -47,10 +45,7 @@ lastpass-cli
 curl https://sh.rustup.rs -sSf | bash -s -- -y
 rustup component add rls rust-analysis rust-src
 
-# wemux
-if test ! (grep host_list=\($USER\) /usr/local/etc/wemux.conf)
-    sed -i ''  "s|^host_list.*|host_list=($USER)|" /usr/local/etc/wemux.conf
-end
+[ ! -d $HOME/.tmux/plugins ] && mkdir -p $HOME/.tmux/plugins
 
 # file watching configs
 if test ! -e /etc/sysctl.conf
@@ -76,7 +71,6 @@ slack \
 discord \
 signal \
 insomnia \
-insomnia-designer \
 simplenote \
 notion \
 font-lato \
