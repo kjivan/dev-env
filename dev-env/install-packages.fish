@@ -61,7 +61,7 @@ if test ! (grep kern.maxfilesperproc=1048576 /etc/sysctl.conf)
     sudo fish -c 'echo kern.maxfilesperproc=1048576 >> /etc/sysctl.conf'
 end
 
-brew install \
+brew install --cask \
 google-chrome \
 brave-browser \
 spectacle \
@@ -74,12 +74,8 @@ dash \
 insomnia \
 simplenote \
 notion \
-font-lato \
-font-open-sans \
-font-raleway \
-font-source-code-pro \
-font-source-code-pro-for-powerline \
-spotify
+spotify \
+font-sauce-code-pro-nerd-font
 
 
 pip3 install --upgrade \
