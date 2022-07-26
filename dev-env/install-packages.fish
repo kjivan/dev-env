@@ -1,7 +1,4 @@
 #!/usr/bin/env fish
-brew tap \
-homebrew/cask-fonts
-
 brew install \
 starship \
 tmux \
@@ -40,10 +37,12 @@ exercism \
 autossh \
 scc \
 lastpass-cli
+divider
 
 # rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 rustup component add rls rust-analysis rust-src
+divider
 
 [ ! -d $HOME/.tmux/plugins ] && mkdir -p $HOME/.tmux/plugins
 
@@ -60,6 +59,7 @@ if test ! (grep kern.maxfilesperproc=1048576 /etc/sysctl.conf)
     sudo sysctl -w kern.maxfilesperproc=1048576
     sudo fish -c 'echo kern.maxfilesperproc=1048576 >> /etc/sysctl.conf'
 end
+divider
 
 brew install --cask \
 google-chrome \
@@ -74,19 +74,27 @@ dash \
 insomnia \
 simplenote \
 notion \
-spotify \
-font-sauce-code-pro-nerd-font
+spotify
+divider
 
+# fonts
+brew tap \
+homebrew/cask-fonts
+brew install --cask \
+font-sauce-code-pro-nerd-font
+divider
 
 pip3 install --upgrade \
 pip \
 setuptools \
 wheel
+divider
 
 pip3 install \
 neovim \
 pylint \
 flake8
+divider
 
 yarn global add --ignore-engines \
 typescript \
@@ -100,3 +108,4 @@ prettier \
 @vue/cli-init \
 @angular/cli \
 expo-cli
+divider
