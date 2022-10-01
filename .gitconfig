@@ -1,27 +1,28 @@
 [include]
-  path=~/.gituserconfig
+	path=~/.gituserconfig
 [push]
-  default = simple
+	default = simple
+	autoSetupRemote = true
 [pull]
-  rebase = true
+	 rebase = true
 [rebase]
-  autoStash = true
+	autoStash = true
 [submodule]
-  recurse = true
+	recurse = true
 [status]
-  submoduleSummary = true
+	submoduleSummary = true
 [diff]
-  submodule = log
+	submodule = log
 [color]
-  ui = true
+	ui = true
 [core]
-  pager = delta
+	pager = delta
 [delta]
-  line-numbers = true
-  plus-color = "#012800"
-  minus-color = "#340001"
-  syntax-theme = Monokai Extended
+	line-numbers = true
+	plus-color = "#012800"
+	minus-color = "#340001"
+	syntax-theme = Monokai Extended
 [interactive]
-  diffFilter = delta --color-only
+	diffFilter = delta --color-only
 [init]
 	defaultBranch = main
