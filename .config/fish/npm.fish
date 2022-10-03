@@ -1,6 +1,7 @@
 function edit-npm -w "vi $HOME/.config/fish/npm.fish"; vi $HOME/.config/fish/npm.fish $argv; end
 
 function ni -w "npm install"; npm install $argv; end
+function nci -w "npm ci"; npm ci $argv; end
 function nod -w "npm outdated"; npm outdated $argv; end
 function nu -w "npm update"; npm update $argv; end
 function ncu -w "npx npm-check -u"; npx npm-check -u; end

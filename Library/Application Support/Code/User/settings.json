@@ -47,5 +47,9 @@
       ],
       "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
+      },
+      "editor.minimap.enabled": false,
+      "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
       }
 }
