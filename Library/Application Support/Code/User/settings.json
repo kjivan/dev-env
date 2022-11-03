@@ -53,5 +53,6 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
       },
       "vim.useSystemClipboard": true,
-      "git.autofetch": true
+      "git.autofetch": true,
+      "jest.autoRun": "off",
 }
