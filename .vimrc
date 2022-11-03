@@ -98,3 +98,6 @@ endif
 " vim:set ft=vim et sw=2:
 
 autocmd TextChanged,TextChangedI <buffer> if &readonly == 0 && filereadable(bufname('%')) | silent write | endif
+
+set noswapfile
+set clipboard=unnamed

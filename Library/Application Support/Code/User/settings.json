@@ -35,13 +35,13 @@
     "extensions.ignoreRecommendations": true,
     "debug.allowBreakpointsEverywhere": true,
     "update.mode": "manual",
-    "java.import.gradle.java.home": "/Library/Java/JavaVirtualMachines/jdk-11.0.12.jdk/Contents/Home",
-    "java.jdt.ls.java.home": "/Library/Java/JavaVirtualMachines/jdk-11.0.12.jdk/Contents/Home",
+    "java.import.gradle.java.home": "/Library/Java/JavaVirtualMachines/jdk-17.0.3.1.jdk/Contents/Home",
+    "java.jdt.ls.java.home": "/Library/Java/JavaVirtualMachines/jdk-17.0.3.1.jdk/Contents/Home",
     "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx2G -Xms100m -javaagent:\"/Users/Kavi.Jivan/.vscode/extensions/gabrielbb.vscode-lombok-1.0.1/server/lombok.jar\"",
     "java.configuration.runtimes": [
         {
-          "name": "JavaSE-11",
-          "path": "/Library/Java/JavaVirtualMachines/jdk-11.0.12.jdk/Contents/Home",
+          "name": "JavaSE-17",
+          "path": "/Library/Java/JavaVirtualMachines/jdk-17.0.3.1.jdk/Contents/Home",
           "default": true
         }
       ],
@@ -51,5 +51,7 @@
       "editor.minimap.enabled": false,
       "[json]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-      }
+      },
+      "vim.useSystemClipboard": true,
+      "git.autofetch": true
 }
