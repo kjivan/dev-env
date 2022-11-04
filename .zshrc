@@ -33,3 +33,6 @@ alias edit-vscode-settings='vi $HOME/Library/Application\ Support/Code/User/sett
 [ -f "$HOME/.zsh/kubectl.zsh" ] && source $HOME/.zsh/kubectl.zsh
 [ -f "$HOME/.zsh/npm.zsh" ] && source $HOME/.zsh/npm.zsh
 [ -f "$HOME/.zsh/openssl.zsh" ] && source $HOME/.zsh/openssl.zsh
+
+# Completions
+#[ -f "$HOME/.zsh/git-completion.zsh" ] && source $HOME/.zsh/git-completion.zsh
