@@ -42,6 +42,7 @@ alias gco="git checkout $@"
 alias gcop="git checkout --patch "
 alias gcob="git checkout -b $@"
 alias gcobb="git checkout - $@"
+gcom() { git checkout $(gmb) }
 alias gcom="git checkout (gmb)"
 alias gcp="git cherry-pick $@"
 alias gcpa="git cherry-pick --abort $@"
