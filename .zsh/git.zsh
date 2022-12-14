@@ -43,7 +43,6 @@ alias gcop="git checkout --patch "
 alias gcob="git checkout -b $@"
 alias gcobb="git checkout - $@"
 gcom() { git checkout $(gmb) }
-alias gcom="git checkout (gmb)"
 alias gcp="git cherry-pick $@"
 alias gcpa="git cherry-pick --abort $@"
 alias gcpc="git cherry-pick --continue $@"
@@ -123,7 +122,7 @@ alias gsubs="git submodule status $@"
 alias gsubu="git submodule update --remote --merge $@"
 
 alias gt="git tag $@"
-alias gtp="git tag $@; git push origin $@"
+gtp() { git tag $@ && git push origin $@; }
 alias gtl="git tag --format='%(creatordate:short)%09%(refname:strip=2)' --sort=-creatordate"
 alias gt1="gtl | head -n 1 $@"
 alias gtam="git tag -am $@"

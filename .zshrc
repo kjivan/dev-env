@@ -35,4 +35,4 @@ alias edit-vscode-settings='vi $HOME/Library/Application\ Support/Code/User/sett
 [ -f "$HOME/.zsh/openssl.zsh" ] && source $HOME/.zsh/openssl.zsh
 
 # Completions
-#[ -f "$HOME/.zsh/git-completion.zsh" ] && source $HOME/.zsh/git-completion.zsh
+autoload -U compinit; compinit
