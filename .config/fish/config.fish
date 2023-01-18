@@ -109,6 +109,8 @@ function serve-http3 -w "python3 -m http.server 8000 --bind 127.0.0.1"; python3 
 function get-port-app; lsof -nP -iTCP:$argv | grep LISTEN; end
 function curl-file -w "curl -OLC"; curl -OLC - $argv; end
 
+function edit-vscode-settings; vi $HOME/Library/Application\ Support/Code/User/settings.json; end
+
 set -xg SPRING_OUTPUT_ANSI_ENABLED always
 
 source $HOME/.config/fish/aws.fish
