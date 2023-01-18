@@ -1,4 +1,4 @@
-function edit-git vi $HOME/.config/fish/git.fish; end
+function edit-git; vi $HOME/.config/fish/git.fish; end
 
 function g -w "git"; git $argv; end
 
