@@ -24,6 +24,9 @@ alias l.='ls -d .* --color=auto'
 
 alias edit-vscode-settings='vi $HOME/Library/Application\ Support/Code/User/settings.json'
 
+#export SPRING_MAIN_BANNER-MODE=off
+export SPRING_OUTPUT_ANSI_ENABLED=ALWAYS
+
 [ -f "$HOME/.zsh/aws.zsh" ] && source $HOME/.zsh/aws.zsh
 [ -f "$HOME/.zsh/docker.zsh" ] && source $HOME/.zsh/docker.zsh
 [ -f "$HOME/.zsh/gh.zsh" ] && source $HOME/.zsh/gh.zsh
@@ -36,3 +39,5 @@ alias edit-vscode-settings='vi $HOME/Library/Application\ Support/Code/User/sett
 
 # Completions
 autoload -U compinit; compinit
+
+source /Users/Kavi.Jivan/.docker/init-zsh.sh || true # Added by Docker Desktop

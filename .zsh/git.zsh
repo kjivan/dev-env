@@ -2,6 +2,8 @@ alias edit-git="vi $HOME/.zsh/git.zsh"
 
 alias g="git $@"
 
+alias gmb="git remote show origin | grep 'HEAD branch' | cut -d' ' -f5"
+
 alias ga="git add $@"
 alias gap="git add --patch $@"
 alias gaa="git add --all $@"
@@ -69,8 +71,8 @@ alias glt="git log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Cr
 alias gld="glt --date=short $@"
 
 alias gm="git merge $@"
-alias gmom="git merge origin/(gmb) $@"
-alias gmum="git merge upstream/(gmb) $@"
+gmom() { git merge origin/$(gmb) }
+gmum() { git merge upstream/$(gmb) }
 alias gmv="git mv $@"
 
 alias gp="git push $@"
@@ -92,7 +94,7 @@ alias grhhard="git reset head --hard $@"
 alias grhk="git reset head --keep $@"
 alias grhs="git reset head --soft $@"
 alias grb="git rebase $@"
-alias grbm="git rebase (gmb) $@"
+grbm() { git rebase $(gmb) }
 alias grem="git remote $@"
 alias grema="git remote add $@"
 alias gremrm="git remote rm $@"
@@ -117,7 +119,7 @@ alias gsub="git submodule $@"
 alias gsuba="git submodule add $@"
 alias gsubi="git submodule update --init $@"
 alias gsubpl="git submodule foreach git pull $@"
-alias gsubplom="git submodule foreach git pull origin (gmb) $@"
+gsubplom() { git submodule foreach git pull origin $(gmb) }
 alias gsubs="git submodule status $@"
 alias gsubu="git submodule update --remote --merge $@"
 
@@ -134,13 +136,12 @@ alias gdt="git describe --tags $@"
 
 alias gwch="git whatchanged -p --date=format:'%A %B %d %Y at %H:%M' --pretty=format:'%n%n%C(yellow)%H%Creset%x09%C(bold green)%D%Creset%n%<|(40)%C(white)%ad%x09%an%Creset%n%n    %C(bold)%s%Creset%n%w(0,4,4)%+b%n' $@"
 
-alias gmb="git remote show origin | grep 'HEAD branch' | cut -d' ' -f5"
-alias git-delete-working-branches="git branch | grep -v (gmb) | xargs git branch -D $@"
-alias git-purge="git checkout (gmb); git reset --hard HEAD (gmb); git clean -dfx; git pull $@"
+git-delete-working-branches() { git branch | grep -v $(gmb) | xargs git branch -D }
+git-purge() { git checkout $(gmb); git reset --hard HEAD $(gmb); git clean -dfx; git pull }
 alias git-reset-repo="git-purge; git-delete-working-branches $@"
 
 gcb () {
-  git checkout (gmb)
+  git checkout $(gmb)
   git pull
   git checkout -b $@
   git push --set-upstream origin $@
