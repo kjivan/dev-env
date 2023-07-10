@@ -59,4 +59,6 @@
       "vim.useSystemClipboard": true,
       "git.autofetch": true,
       "jest.autoRun": "off",
+      "files.insertFinalNewline": true,
+      "files.trimFinalNewlines": true,
 }

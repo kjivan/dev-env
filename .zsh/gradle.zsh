@@ -12,6 +12,7 @@ alias grdcb="./gradlew clean build $@"
 alias grdcbp="./gradlew clean build publishToMavenLocal $@"
 
 alias grdc="./gradlew check $@"
+alias grdc2="divider; ./gradlew check 2>&1 | grep -i '(?:error|failed)' -A3 | head -n6"
 alias grdcc="./gradlew clean check $@"
 
 alias grdcls="./gradlew classes $@"
