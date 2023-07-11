@@ -61,4 +61,5 @@
       "jest.autoRun": "off",
       "files.insertFinalNewline": true,
       "files.trimFinalNewlines": true,
+      "editor.renderFinalNewline": "dimmed",
 }
