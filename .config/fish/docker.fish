@@ -1,3 +1,4 @@
+function docker -w "podman"; podman $argv; end
 function edit-docker -w "vi $HOME/.config/fish/docker.fish"; vi $HOME/.config/fish/docker.fish $argv; end
 
 function d -w "docker"; docker $argv; end
