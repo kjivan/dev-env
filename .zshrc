@@ -39,5 +39,3 @@ export SPRING_OUTPUT_ANSI_ENABLED=ALWAYS
 
 # Completions
 autoload -U compinit; compinit
-
-source /Users/Kavi.Jivan/.docker/init-zsh.sh || true # Added by Docker Desktop

@@ -21,9 +21,9 @@
           "spotlessGradle.format.enable": true,
           "spotlessGradle.diagnostics.enable": true,
           "editor.codeActionsOnSave": {
-            "source.fixAll.spotlessGradle": true
+            "source.fixAll.spotlessGradle": "explicit"
           },
-          "editor.defaultFormatter": "richardwillis.vscode-spotless-gradle",
+          "editor.defaultFormatter": "redhat.java",
           "files.trimTrailingWhitespace": false
         },
     "microprofile.alwaysShowOverview": false,
@@ -35,17 +35,13 @@
     "extensions.ignoreRecommendations": true,
     "debug.allowBreakpointsEverywhere": true,
     "update.mode": "manual",
-    "java.import.gradle.java.home": "/Library/Java/JavaVirtualMachines/jdk-17.0.3.1.jdk/Contents/Home",
-    "java.jdt.ls.java.home": "/Library/Java/JavaVirtualMachines/jdk-17.0.3.1.jdk/Contents/Home",
-    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx16G -Xms4G -javaagent:\"/Users/Kavi.Jivan/.vscode/extensions/gabrielbb.vscode-lombok-1.0.1/server/lombok.jar\"",
+    "java.import.gradle.java.home": "/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home",
+    "java.jdt.ls.java.home": "/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home",
+    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx2G -Xms100m -javaagent:\"/Users/Kavi.Jivan/.vscode/extensions/gabrielbb.vscode-lombok-1.0.1/server/lombok.jar\"",
     "java.configuration.runtimes": [
         {
-          "name": "JavaSE-11",
-          "path": "/Library/Java/JavaVirtualMachines/jdk-11.0.12.jdk/Contents/Home"
-        },
-        {
-          "name": "JavaSE-17",
-          "path": "/Library/Java/JavaVirtualMachines/jdk-17.0.3.1.jdk/Contents/Home",
+          "name": "JavaSE-21",
+          "path": "/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home",
           "default": true
         }
       ],
@@ -54,12 +50,19 @@
       },
       "editor.minimap.enabled": false,
       "[json]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "vscode.json-language-features"
       },
       "vim.useSystemClipboard": true,
       "git.autofetch": true,
       "jest.autoRun": "off",
+      "testing.openTesting": "neverOpen",
       "files.insertFinalNewline": true,
       "files.trimFinalNewlines": true,
-      "editor.renderFinalNewline": "dimmed",
+      "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+      },
+      "aws.suppressPrompts": {
+        "regionAddAutomatically": true
+      },
+      "testing.automaticallyOpenTestResults": "neverOpen",
 }

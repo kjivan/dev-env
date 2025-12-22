@@ -3,7 +3,7 @@
 bind \co kill-line
 
 [ -d /usr/local/sbin ] && set -g PATH "/usr/local/sbin" $PATH
-[ -d /opt/homebrew/bin ] && set -g PATH "/opt/homebrew/bin" $PATH
+[ -f /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
 [ -d $HOME/go ] && set -gx GOPATH $HOME/go
 [ -d $HOME/.cargo/bin ] && set -gx PATH $PATH $HOME/.cargo/bin
 [ -d $HOME/.poetry/bin ] && set -gx PATH $PATH $HOME/.poetry/bin
@@ -15,6 +15,9 @@ set -gx fish_greeting ""
 set -gx VISUAL nvim
 set -gx EDITOR $VISUAL
 set -gx GIT_EDITOR $VISUAL
+
+set -gx MISE_ENV_FILE .env
+
 
 function dg -w "git --git-dir=$HOME/.dev-env.git/ --work-tree=$HOME"; git --git-dir=$HOME/.dev-env.git/ --work-tree=$HOME $argv; end
 
@@ -138,10 +141,3 @@ if [ -z "$TMUX" ]
     tmux
   end
 end
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-#eval /Users/kavijivan/opt/anaconda3/bin/conda "shell.fish" "hook" $argv | source
-# <<< conda initialize <<<
-
-source /Users/Kavi.Jivan/.docker/init-fish.sh || true # Added by Docker Desktop
