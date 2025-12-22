@@ -35,18 +35,6 @@ Plug 'luochen1990/rainbow'
 Plug 'mattn/webapi-vim'
 Plug 'mattn/vim-gist'
 
-Plug 'neovim/nvim-lspconfig'
-Plug 'glepnir/lspsaga.nvim'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
-
-Plug 'hrsh7th/cmp-vsnip'
-Plug 'hrsh7th/vim-vsnip'
-
-Plug 'williamboman/nvim-lsp-installer'
 call plug#end()
 
 " leader
@@ -161,5 +149,103 @@ vmap <leader>s y:Ack <C-R>"<cr>
 nnoremap <leader>j :cn <cr>
 nnoremap <leader>k :cp <cr>
 
-source $HOME/.config/nvim/lsp.vim
-source $HOME/.config/nvim/cmp.vim
+" coc settings
+" set hidden
+" set nobackup
+" set nowritebackup
+" set cmdheight=2
+" set updatetime=300
+" set shortmess+=c
+" set signcolumn=yes
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" function! s:check_back_space() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
+" " Use <cr> to confirm completion
+" if has('patch8.1.1068')
+"   inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+" else
+"   imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" endif
+" nmap <silent> [g <Plug>(coc-diagnostic-prev)
+" nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
+" nnoremap <silent> K :call <SID>show_documentation()<CR>
+" function! s:show_documentation()
+"   if (index(['vim','help'], &filetype) >= 0)
+"     execute 'h '.expand('<cword>')
+"   else
+"     call CocAction('doHover')
+"   endif
+" endfunction
+" autocmd CursorHold * silent call CocActionAsync('highlight')
+" nmap <leader>rn <Plug>(coc-rename)
+" augroup mygroup
+"   autocmd!
+"   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+"   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+" augroup end
+" xmap <leader>a  <Plug>(coc-codeaction-selected)
+" nmap <leader>a  <Plug>(coc-codeaction)
+" nmap <leader>x  <Plug>(coc-fix-current)
+" " Introduce function text object
+" " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+" xmap if <Plug>(coc-funcobj-i)
+" xmap af <Plug>(coc-funcobj-a)
+" omap if <Plug>(coc-funcobj-i)
+" omap af <Plug>(coc-funcobj-a)
+" " Use <TAB> for selections ranges.
+" " NOTE: Requires 'textDocument/selectionRange' support from the language server.
+" " coc-tsserver, coc-python are the examples of servers that support it.
+" "nmap <silent> <TAB> <Plug>(coc-range-select)
+" "xmap <silent> <TAB> <Plug>(coc-range-select)
+" " Add `:Format` command to format current buffer.
+" command! -nargs=0 Format :call CocAction('format')
+" nnoremap <leader>f :Format<cr>
+" command! -nargs=0 Prettier :CocCommand prettier.formatFile
+" "xmap <leader>f  <Plug>(coc-format-selected)
+" "nmap <leader>f  <Plug>(coc-format-selected)
+" " Add `:Fold` command to fold current buffer.
+" command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+" " Add `:OR` command for organize imports of the current buffer.
+" command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+" " Add (Neo)Vim's native statusline support.
+" " NOTE: Please see `:h coc-status` for integrations with external plugins that
+" " provide custom statusline: lightline.vim, vim-airline.
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" " Mappings using CoCList:
+" " Show all diagnostics.
+" nnoremap <silent> <space>la  :<C-u>CocList diagnostics<cr>
+" " Manage extensions.
+" nnoremap <silent> <space>le  :<C-u>CocList extensions<cr>
+" " Show commands.
+" nnoremap <silent> <space>ld  :<C-u>CocList commands<cr>
+" " Find symbol of current document.
+" nnoremap <silent> <space>lm  :<C-u>CocList outline<cr>
+" " Search workspace symbols.
+" nnoremap <silent> <space>ls  :<C-u>CocList -I symbols<cr>
+" " Do default action for next item.
+" nnoremap <silent> <space>lj  :<C-u>CocNext<CR>
+" " Do default action for previous item.
+" nnoremap <silent> <space>lk  :<C-u>CocPrev<CR>
+" " Resume latest coc list.
+" nnoremap <silent> <space>lr :<C-u>CocListResume<CR>
+" let t:is_transparent = 1
+" function! Toggle_transparent()
+"     if t:is_transparent == 0
+"         hi Normal guibg=NONE ctermbg=NONE
+"         let t:is_transparent = 1
+"     else
+"         let t:is_tranparent = 0
+"     endif
+" endfunction
+" hi Normal guibg=NONE ctermbg=NONE
+" nnoremap <C-t> : call Toggle_transparent()<CR>
