@@ -141,3 +141,10 @@ if [ -z "$TMUX" ]
     tmux
   end
 end
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH /Users/kjivan/.cache/lm-studio/bin
+# End of LM Studio CLI section
+
+# Added by Antigravity CLI installer
+set -gx PATH "/Users/kjivan/.local/bin" $PATH
