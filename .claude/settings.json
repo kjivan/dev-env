@@ -1,0 +1,136 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.config/gcloud/**)",
+      "Read(~/.kube/**)",
+      "Read(~/.config/gh/**)",
+      "Read(~/.npmrc)",
+      "Read(~/.netrc)",
+      "Read(~/.claude/.credentials.json)",
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(**/*.pem)",
+      "Read(**/id_rsa*)",
+      "Read(**/id_ed25519*)",
+      "Edit(~/.ssh/**)",
+      "Edit(~/.aws/**)",
+      "Bash(curl * | sh *)",
+      "Bash(curl * | bash *)",
+      "Bash(wget * | sh *)",
+      "Bash(wget * | bash *)",
+      "Bash(history -c *)",
+      "Bash(shred *)"
+    ],
+    "ask": [
+      "Bash(dangerouslyDisableSandbox:true)",
+      "Bash(git push *)",
+      "Bash(git remote add *)",
+      "Bash(git remote set-url *)",
+      "Bash(gh pr merge *)",
+      "Bash(gh release *)",
+      "Bash(gh secret *)",
+      "Bash(gh workflow run *)",
+      "Bash(npm publish *)",
+      "Bash(yarn publish *)",
+      "Bash(pnpm publish *)",
+      "Bash(cargo publish *)",
+      "Bash(twine upload *)",
+      "Bash(docker push *)",
+      "Bash(aws *)",
+      "Bash(gcloud *)",
+      "Bash(az *)",
+      "Bash(kubectl *)",
+      "Bash(terraform *)",
+      "Bash(pulumi *)",
+      "Bash(flyctl *)",
+      "Bash(vercel *)",
+      "Bash(netlify *)",
+      "Bash(heroku *)",
+      "Bash(railway *)",
+      "Bash(supabase *)",
+      "Bash(wrangler *)"
+    ],
+    "defaultMode": "auto",
+    "disableBypassPermissionsMode": "disable",
+    "blockReadsOutsideWorkingDirectories": true
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '\"\\(now | localtime | strftime(\"%Y-%m-%d %H:%M:%S\")) [\\(env.PWD // \"?\")] \\(.tool_input.command)\"' >> ~/.claude/bash-audit.log 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  },
+  "sandbox": {
+    "enabled": true,
+    "failIfUnavailable": true,
+    "autoAllowBashIfSandboxed": true,
+    "filesystem": {
+      "denyWrite": [
+        "~/.ssh",
+        "~/.aws"
+      ],
+      "denyRead": [
+        "~/.ssh",
+        "~/.aws",
+        "~/.config/gcloud",
+        "~/.kube",
+        "~/.config/gh",
+        "~/.npmrc",
+        "~/.netrc",
+        "~/.claude/.credentials.json",
+        "~/**/.env",
+        "~/**/.env.*",
+        "~/**/*.pem",
+        "~/Library/Keychains"
+      ]
+    },
+    "credentials": {
+      "envVars": [
+        {
+          "name": "GITHUB_TOKEN",
+          "mode": "deny"
+        },
+        {
+          "name": "GH_TOKEN",
+          "mode": "deny"
+        },
+        {
+          "name": "NPM_TOKEN",
+          "mode": "deny"
+        },
+        {
+          "name": "ANTHROPIC_API_KEY",
+          "mode": "deny"
+        },
+        {
+          "name": "AWS_ACCESS_KEY_ID",
+          "mode": "deny"
+        },
+        {
+          "name": "AWS_SECRET_ACCESS_KEY",
+          "mode": "deny"
+        },
+        {
+          "name": "AWS_SESSION_TOKEN",
+          "mode": "deny"
+        }
+      ]
+    }
+  },
+  "effortLevel": "high",
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
+  "theme": "dark",
+  "voiceEnabled": true
+}
