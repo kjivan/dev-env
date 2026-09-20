@@ -5,7 +5,6 @@ fi
 if [ -f ~/.bashrc ]; then
    source ~/.bashrc
 fi
-. "$HOME/.cargo/env"
 
 source /Users/Kavi.Jivan/.docker/init-bash.sh || true # Added by Docker Desktop
 
@@ -15,3 +14,6 @@ export PATH="$PATH:/Users/kjivan/.cache/lm-studio/bin"
 
 # Added by Antigravity CLI installer
 export PATH="/Users/kjivan/.local/bin:$PATH"
+
+# Rust Cargo
+. "$HOME/.cargo/env"
