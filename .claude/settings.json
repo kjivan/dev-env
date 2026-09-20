@@ -20,6 +20,12 @@
       "Bash(curl * | bash *)",
       "Bash(wget * | sh *)",
       "Bash(wget * | bash *)",
+      "Bash(curl * | sh)",
+      "Bash(curl * | bash)",
+      "Bash(wget * | sh)",
+      "Bash(wget * | bash)",
+      "Bash(rm -rf /*)",
+      "Bash(rm -rf ~*)",
       "Bash(history -c *)",
       "Bash(shred *)"
     ],
@@ -50,7 +56,40 @@
       "Bash(heroku *)",
       "Bash(railway *)",
       "Bash(supabase *)",
-      "Bash(wrangler *)"
+      "Bash(wrangler *)",
+      "Bash(helm *)",
+      "Bash(cdk *)",
+      "Bash(firebase *)",
+      "Bash(sam *)",
+      "Bash(serverless *)",
+      "Bash(ssh *)",
+      "Bash(scp *)",
+      "Bash(rsync *)",
+      "Bash(ansible*)",
+      "Bash(rm -rf *)",
+      "Bash(rm -r *)",
+      "Bash(git reset --hard *)",
+      "Bash(git clean -f*)",
+      "Bash(dropdb *)",
+      "Bash(truncate *)",
+      "Bash(gh pr create *)",
+      "Bash(gh pr comment *)",
+      "Bash(gh issue create *)",
+      "Bash(gh issue comment *)",
+      "Bash(git send-email *)",
+      "Bash(curl -X POST *)",
+      "Bash(curl -d *)",
+      "Bash(sendmail *)",
+      "Bash(mail *)",
+      "Bash(stripe *)",
+      "Bash(chmod *)",
+      "Bash(chown *)",
+      "Bash(gh api *)",
+      "Bash(gh repo edit *)",
+      "Bash(security *)",
+      "Bash(launchctl *)",
+      "Bash(defaults write *)",
+      "Bash(dscl *)"
     ],
     "defaultMode": "auto",
     "disableBypassPermissionsMode": "disable",
@@ -64,6 +103,15 @@
           {
             "type": "command",
             "command": "jq -r '\"\\(now | localtime | strftime(\"%Y-%m-%d %H:%M:%S\")) [\\(env.PWD // \"?\")] \\(.tool_input.command)\"' >> ~/.claude/bash-audit.log 2>/dev/null || true"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '\"\\(now | localtime | strftime(\"%Y-%m-%d %H:%M:%S\")) [\\(env.PWD // \"?\")] \\(.tool_name) \\(.tool_input.file_path // \"?\")\"' >> ~/.claude/bash-audit.log 2>/dev/null || true"
           }
         ]
       }
@@ -132,5 +180,6 @@
     "mode": "hold"
   },
   "theme": "dark",
-  "voiceEnabled": true
+  "voiceEnabled": true,
+  "model": "opus"
 }
