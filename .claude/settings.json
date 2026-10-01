@@ -1,4 +1,8 @@
 {
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
   "permissions": {
     "deny": [
       "Read(~/Documents/**)",
@@ -99,8 +103,4 @@
   },
   "theme": "dark",
   "voiceEnabled": true
-  "attribution": {
-    "commit": "",
-    "pr": ""
-  }
 }
