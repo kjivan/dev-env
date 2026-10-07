@@ -20,12 +20,9 @@ require("lazy").setup({
   {
     "nvim-lualine/lualine.nvim",
     opts = {
-      -- plain like lightline was; the default icons and separators need a Nerd Font
+      -- plain like lightline was
       options = {
         theme = "gruvbox",
-        icons_enabled = false,
-        component_separators = "|",
-        section_separators = "",
       },
     },
   },
@@ -53,6 +50,22 @@ require("lazy").setup({
   -- editing
   { "kylechui/nvim-surround", opts = {} },
   "cohama/lexima.vim",
+
+  -- lsp: server configs (cmd, root markers) used by vim.lsp.enable
+  "neovim/nvim-lspconfig",
+  {
+    "saghen/blink.cmp",
+    version = "1.*", -- v1 is stable and ships the prebuilt fuzzy matcher; v2 is mid-rewrite
+    opts = {
+      completion = {
+        documentation = { auto_show = true },
+        -- kind as text instead of Nerd Font icons, like lualine
+        menu = { draw = { columns = { { "label", "label_description", gap = 1 }, { "kind" } } } },
+      },
+      signature = { enabled = true },
+      sources = { default = { "lsp", "path", "buffer" } },
+    },
+  },
 }, {
   install = { colorscheme = { "gruvbox" } },
   change_detection = { notify = false },
@@ -95,9 +108,9 @@ local function set_indent(filetypes, width, expandtab)
     end,
   })
 end
-set_indent({ "cpp" }, 4, true)
+set_indent({ "cpp", "java" }, 4, true)
 set_indent({ "gradle" }, 2, false)
-set_indent({ "go", "java" }, 4, false)
+set_indent({ "go" }, 4, false)
 
 -- autosave
 vim.g.auto_save = 1
@@ -117,6 +130,63 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
   group = vim.api.nvim_create_augroup("autoread", { clear = true }),
   callback = function()
     if vim.fn.mode() ~= "c" and vim.bo.buftype == "" then vim.cmd("checktime") end
+  end,
+})
+
+-- language servers; keymaps are Neovim defaults (grn, grr, gra, gri, grt, K) plus gd
+-- basedpyright has no extract refactors, so pylsp runs alongside it for rope's
+-- code actions only; its other capabilities would duplicate basedpyright's
+vim.lsp.config("pylsp", {
+  settings = {
+    pylsp = { plugins = { pyflakes = { enabled = false }, pycodestyle = { enabled = false }, mccabe = { enabled = false } } },
+  },
+  on_init = function(client)
+    local caps = client.server_capabilities
+    client.server_capabilities = {
+      textDocumentSync = caps.textDocumentSync,
+      codeActionProvider = caps.codeActionProvider,
+      executeCommandProvider = caps.executeCommandProvider,
+    }
+  end,
+})
+vim.lsp.config("jdtls", {
+  -- without this, jdtls returns no location for classes in jars (e.g. Spring)
+  init_options = { extendedClientCapabilities = { classFileContentsSupport = true } },
+  -- jdtls's generated code (extract method, etc.) uses tabs unless told otherwise
+  settings = { java = { format = { insertSpaces = true, tabSize = 4 } } },
+})
+vim.lsp.enable({ "gopls", "rust_analyzer", "vtsls", "basedpyright", "pylsp", "jdtls" })
+
+-- jdtls points library definitions at jdt:// URIs; load their source from jdtls
+-- and keep jdtls attached so gd/K/grr work inside library code too
+vim.api.nvim_create_autocmd("BufReadCmd", {
+  group = vim.api.nvim_create_augroup("jdt_uri", { clear = true }),
+  pattern = "jdt://*",
+  callback = function(ev)
+    local client = vim.lsp.get_clients({ name = "jdtls" })[1]
+    if not client then return end
+    local res = client:request_sync("java/classFileContents", { uri = ev.match }, 10000, ev.buf)
+    local text = res and res.result or ("could not load " .. ev.match)
+    vim.api.nvim_buf_set_lines(ev.buf, 0, -1, false, vim.split(text, "\n"))
+    vim.bo[ev.buf].buftype = "nofile"
+    vim.bo[ev.buf].modifiable = false
+    vim.bo[ev.buf].filetype = "java"
+    vim.lsp.buf_attach_client(ev.buf, client.id)
+  end,
+})
+
+-- snippet sessions outlive <Esc>, so Tab would later jump back into an old
+-- snippet instead of inserting a tab
+vim.api.nvim_create_autocmd("ModeChanged", {
+  group = vim.api.nvim_create_augroup("snippet_stop", { clear = true }),
+  pattern = "*:n",
+  callback = function() vim.snippet.stop() end,
+})
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("lsp_keymaps", { clear = true }),
+  callback = function(ev)
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = ev.buf })
   end,
 })
 
@@ -272,3 +342,9 @@ map("n", "<leader>e", "<cmd>Explore<cr>")
 map("n", "<leader>r", "<cmd>Rexplore<cr>")
 
 map("n", "<leader>u", "<cmd>UndotreeToggle<cr><cmd>UndotreeFocus<cr>")
+
+-- read-only split of the keymaps
+vim.api.nvim_create_user_command("Cheatsheet", function()
+  vim.cmd.sview(vim.fn.stdpath("config") .. "/cheatsheet.md")
+end, {})
+map("n", "<leader>?", "<cmd>Cheatsheet<cr>")
