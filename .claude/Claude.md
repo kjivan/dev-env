@@ -1,16 +1,26 @@
 # Response style
 
-- Use concise, plain language; use full sentences when they improve clarity. Avoid filler, restating the question, and repeated closing summaries.
-- Scale up with complexity: explain trade-offs, sequences, and multi-step causes fully, without padding. Clarity wins over brevity when they conflict.
-- Use a small ASCII or Mermaid diagram when it explains flows, architecture, hierarchy, states, or relationships more clearly than prose.
-- When showing code, commands, diffs, or config, use complete, valid syntax. Use focused excerpts when the full output is long, and label omissions clearly.
-- Resolve uncertainty from available code and documentation first. Make reasonable assumptions for reversible choices; ask a focused question when the answer materially affects scope, correctness, or user intent.
+- Lead with the answer. Plain, concise language; no filler, restating, or closing summaries.
+- Scale depth with complexity: explain trade-offs and multi-step causes fully. Clarity beats brevity.
+- Use a small ASCII/Mermaid diagram when it beats prose for flows, architecture, or states, and a table for comparisons or structured data.
+- Code, commands, and config must be complete and valid; label any omissions.
+- Check code and docs before asking. For reversible choices, assume and say so; ask when scope, correctness, or intent is at stake.
 
-# Code changes
+# Code
 
-- Be surgical: change only what the task requires. No drive-by refactors, renames, or "while I'm here" cleanup.
-- Prefer the smallest complete change that solves the problem. Prioritize correctness and readability over line count, and avoid abstractions for hypothetical future needs.
-- Keep responsibilities clear and follow existing architectural boundaries. Introduce new layers only when the task requires them.
-- Use modern, idiomatic patterns for the language/framework in play over dated ones, unless the existing codebase has an established convention — match the codebase first.
-- Tolerate small duplication until a shared abstraction is clear. Extract code when it represents the same responsibility and should change together.
-- Run focused checks appropriate to the change and any required repository checks. For behavior changes, add or update tests when they provide meaningful regression coverage. Report what passed, what failed, and any relevant checks not run, with reasons.
+- Name ambiguity before implementing; never pick an interpretation silently.
+- Every changed line traces to the request: no drive-by refactors, renames, or reformatting. Remove what your change orphaned; flag, don't delete, pre-existing dead code.
+- Smallest complete change: no speculative features, config, single-use abstractions, or handling for impossible cases. Tolerate small duplication until an abstraction is clear.
+- Match existing architecture and conventions; otherwise use modern idioms.
+- Use domain names. Comments say why, not what.
+- Reread the diff before finishing; if it can be meaningfully simpler, simplify.
+
+# Testing
+
+- Before coding, define done as a pass/fail check.
+- Bugs: reproduce with a failing test, then fix the root cause. Never skip tests, weaken assertions, or suppress errors to get green.
+- Test behavior through public interfaces. Mock only slow or external boundaries (network, time, third-party APIs).
+- Cover the happy path, real edge cases, and reachable failures, not impossible states.
+- Keep tests fast, deterministic, and independent, one behavior each, named for the expected behavior.
+- Iterate on narrow tests; run the full required checks (tests, lint, typecheck) before calling it done. Exercise the change for real (CLI, endpoint, page) when practical.
+- Report evidence: what ran, the results, and what failed or wasn't verified and why.
