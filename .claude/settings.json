@@ -21,6 +21,7 @@
       "Read(**/id_ed25519*)",
       "Edit(~/.ssh/**)",
       "Edit(~/.aws/**)",
+      "Edit(~/.claude/settings.json)",
       "Bash(curl * | sh *)",
       "Bash(curl * | bash *)",
       "Bash(wget * | sh *)",
@@ -97,6 +98,11 @@
     }
   },
   "effortLevel": "high",
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "high"
+    }
+  },
   "voice": {
     "enabled": true,
     "mode": "hold"
