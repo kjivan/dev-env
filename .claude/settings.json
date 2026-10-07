@@ -108,5 +108,8 @@
     "mode": "hold"
   },
   "theme": "dark",
-  "voiceEnabled": true
+  "remoteControlAtStartup": true,
+  "voiceEnabled": true,
+  "agentPushNotifEnabled": true,
+  "inputNeededNotifEnabled": true
 }
