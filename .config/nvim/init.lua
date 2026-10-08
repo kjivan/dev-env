@@ -154,6 +154,23 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
   end,
 })
 
+-- Neovim remembers each file's last cursor position (the '" mark) but doesn't
+-- jump to it; commit and rebase messages are new each time, so start at the top
+vim.api.nvim_create_autocmd("BufReadPost", {
+  group = vim.api.nvim_create_augroup("restore_cursor", { clear = true }),
+  callback = function(ev)
+    local ft = vim.bo[ev.buf].filetype
+    if ft == "gitcommit" or ft == "gitrebase" or vim.wo.diff then return end
+    local line = vim.api.nvim_buf_get_mark(ev.buf, '"')[1]
+    if line >= 1 and line <= vim.api.nvim_buf_line_count(ev.buf) then vim.cmd('normal! g`"') end
+  end,
+})
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+  group = vim.api.nvim_create_augroup("yank_highlight", { clear = true }),
+  callback = function() vim.hl.on_yank() end,
+})
+
 -- off by default since 0.11, leaving only a sign in the gutter
 vim.diagnostic.config({ virtual_text = true, severity_sort = true })
 
