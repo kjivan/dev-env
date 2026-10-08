@@ -4,6 +4,11 @@ vim.g.mapleader = " "
 vim.g.rainbow_active = 1
 vim.g.netrw_banner = 0
 vim.g.netrw_sort_sequence = ""
+-- no remote plugins in any of these languages; stops :checkhealth warnings
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_node_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_perl_provider = 0
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
@@ -54,6 +59,9 @@ require("lazy").setup({
         local gs = require("gitsigns")
         vim.keymap.set("n", "]h", function() gs.nav_hunk("next") end, { buffer = bufnr })
         vim.keymap.set("n", "[h", function() gs.nav_hunk("prev") end, { buffer = bufnr })
+        vim.keymap.set("n", "<leader>hp", gs.preview_hunk, { buffer = bufnr })
+        vim.keymap.set("n", "<leader>hr", gs.reset_hunk, { buffer = bufnr })
+        vim.keymap.set("n", "<leader>hb", gs.blame_line, { buffer = bufnr })
       end,
     },
   },
@@ -80,6 +88,8 @@ require("lazy").setup({
 }, {
   install = { colorscheme = { "gruvbox" } },
   change_detection = { notify = false },
+  -- no plugin needs luarocks; otherwise :checkhealth reports it missing
+  rocks = { enabled = false },
 })
 
 -- options
@@ -145,7 +155,7 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
 })
 
 -- off by default since 0.11, leaving only a sign in the gutter
-vim.diagnostic.config({ virtual_text = true })
+vim.diagnostic.config({ virtual_text = true, severity_sort = true })
 
 -- language servers; keymaps are Neovim defaults (grn, grr, gra, gri, grt, K) plus gd
 -- basedpyright has no extract refactors, so pylsp runs alongside it for rope's

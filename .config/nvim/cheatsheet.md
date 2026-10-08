@@ -21,6 +21,10 @@ Open with `:Cheatsheet` or `<leader>?`. Leader is `Space`.
 | `<leader>d`            | All diagnostics in the project                  |
 | `<leader>f`            | Format the file                                 |
 | `<leader>i`            | Inlay hints (parameter names, types) on / off   |
+| **Git**                |                                                 |
+| `<leader>hp`           | Preview the change (hunk) under the cursor      |
+| `<leader>hr`           | Undo that hunk (back to the committed version)  |
+| `<leader>hb`           | Who last changed this line (blame)              |
 | **Files**              |                                                 |
 | `<leader>e`            | File browser (netrw)                            |
 | `<leader>r`            | Back to the file browser                        |
@@ -51,6 +55,7 @@ Open with `:Cheatsheet` or `<leader>?`. Leader is `Space`.
 | `grt`         | Go to type definition                                 |
 | `gO`          | Symbols in this file                                  |
 | `Ctrl-o/i`    | Jump back / forward                                   |
+| `]h` / `[h`   | Next / previous git change (hunk)                     |
 
 ## Editing and refactoring
 
