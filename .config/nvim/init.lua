@@ -24,15 +24,26 @@ require("lazy").setup({
       options = {
         theme = "gruvbox",
       },
+      -- lsp_status shows a spinner while a server works (e.g. jdtls importing Gradle)
+      sections = { lualine_x = { { "lsp_status", icon = "" }, "encoding", "fileformat", "filetype" } },
     },
   },
   "luochen1990/rainbow",
   { "catgoose/nvim-colorizer.lua", main = "colorizer", opts = {} },
 
   -- navigation / search
-  "mbbill/undotree",
   "christoomey/vim-tmux-navigator",
-  { "ibhagwan/fzf-lua", opts = { "skim", winopts = { preview = { hidden = true } } } },
+  {
+    "ibhagwan/fzf-lua",
+    opts = {
+      "skim",
+      winopts = { preview = { hidden = true } },
+      -- code actions and other vim.ui.select prompts use the picker
+      ui_select = {},
+      -- symbol kind as text instead of Nerd Font icons, like blink.cmp
+      lsp = { symbols = { symbol_style = 3 } },
+    },
+  },
 
   -- git
   "tpope/vim-fugitive",
@@ -79,7 +90,9 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.list = true
 vim.opt.listchars = { tab = "▸ ", trail = ".", extends = ">" }
-vim.opt.showmatch = true
+-- always shown, so git/diagnostic signs don't shift the text sideways
+vim.opt.signcolumn = "yes"
+vim.opt.winborder = "rounded"
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.swapfile = false
@@ -91,9 +104,7 @@ vim.opt.tabstop = 2
 vim.opt.expandtab = true
 vim.opt.spelllang = "en_us"
 vim.opt.iskeyword:append("-")
-vim.opt.clipboard = "unnamed,unnamedplus"
--- make esc instant
-vim.opt.ttimeoutlen = 0
+vim.opt.clipboard = "unnamedplus"
 
 local indent = vim.api.nvim_create_augroup("indent", { clear = true })
 local function set_indent(filetypes, width, expandtab)
@@ -133,6 +144,9 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
   end,
 })
 
+-- off by default since 0.11, leaving only a sign in the gutter
+vim.diagnostic.config({ virtual_text = true })
+
 -- language servers; keymaps are Neovim defaults (grn, grr, gra, gri, grt, K) plus gd
 -- basedpyright has no extract refactors, so pylsp runs alongside it for rope's
 -- code actions only; its other capabilities would duplicate basedpyright's
@@ -154,6 +168,21 @@ vim.lsp.config("jdtls", {
   init_options = { extendedClientCapabilities = { classFileContentsSupport = true } },
   -- jdtls's generated code (extract method, etc.) uses tabs unless told otherwise
   settings = { java = { format = { insertSpaces = true, tabSize = 4 } } },
+})
+-- gopls and vtsls send no inlay hints (<leader>i) unless asked; these match
+-- what basedpyright, rust-analyzer and jdtls show by default
+vim.lsp.config("gopls", {
+  settings = {
+    gopls = { hints = { parameterNames = true, assignVariableTypes = true, rangeVariableTypes = true, compositeLiteralFields = true } },
+  },
+})
+local ts_inlay_hints = {
+  parameterNames = { enabled = "literals" },
+  variableTypes = { enabled = true },
+  functionLikeReturnTypes = { enabled = true },
+}
+vim.lsp.config("vtsls", {
+  settings = { typescript = { inlayHints = ts_inlay_hints }, javascript = { inlayHints = ts_inlay_hints } },
 })
 vim.lsp.enable({ "gopls", "rust_analyzer", "vtsls", "basedpyright", "pylsp", "jdtls" })
 
@@ -305,10 +334,12 @@ end, { range = "%", nargs = "?", complete = function() return { "list" } end })
 -- keymaps
 local map = vim.keymap.set
 
-map("n", "<leader>w", "<cmd>set spell<cr>")
-map("n", "<leader>se", "<cmd>let g:auto_save = 1<cr>")
-map("n", "<leader>sd", "<cmd>let g:auto_save = 0<cr>")
-map("n", "<leader>ss", "<cmd>w<cr>")
+map("n", "<leader>w", "<cmd>set spell!<cr>")
+-- not under <leader>s, which would make <leader>s wait for 'timeoutlen'
+map("n", "<leader>A", function()
+  vim.g.auto_save = vim.g.auto_save == 1 and 0 or 1
+  vim.notify("autosave " .. (vim.g.auto_save == 1 and "on" or "off"))
+end, { desc = "Toggle autosave" })
 map("n", "<leader>q", "<cmd>q<cr>")
 map("n", "<leader>v", "<cmd>e $MYVIMRC<cr>")
 map("n", "<leader>/", "<cmd>nohlsearch<cr>")
@@ -336,12 +367,21 @@ map("n", "<leader>a", "<cmd>FzfLua grep<cr>")
 map("n", "<leader>s", "<cmd>FzfLua grep_cword<cr>")
 map("x", "<leader>s", "<cmd>FzfLua grep_visual<cr>")
 
+-- lsp
+map("n", "<leader>l", "<cmd>FzfLua lsp_live_workspace_symbols<cr>")
+map("n", "<leader>d", "<cmd>FzfLua diagnostics_workspace<cr>")
+map("n", "<leader>f", function() vim.lsp.buf.format() end, { desc = "Format file" })
+map("n", "<leader>i", function()
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, { desc = "Toggle inlay hints" })
+
 -- netrw; :E is ambiguous without this
 vim.api.nvim_create_user_command("E", "Explore", {})
 map("n", "<leader>e", "<cmd>Explore<cr>")
 map("n", "<leader>r", "<cmd>Rexplore<cr>")
 
-map("n", "<leader>u", "<cmd>UndotreeToggle<cr><cmd>UndotreeFocus<cr>")
+vim.cmd.packadd("nvim.undotree")
+map("n", "<leader>u", "<cmd>Undotree<cr>")
 
 -- read-only split of the keymaps
 vim.api.nvim_create_user_command("Cheatsheet", function()

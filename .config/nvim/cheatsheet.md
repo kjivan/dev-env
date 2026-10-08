@@ -16,18 +16,22 @@ Open with `:Cheatsheet` or `<leader>?`. Leader is `Space`.
 | `<leader>s`            | Grep word under cursor (visual: the selection)  |
 | `<leader>j` / `k`      | Next / previous quickfix item                   |
 | `<leader>/`            | Clear search highlight                          |
+| **LSP**                |                                                 |
+| `<leader>l`            | Find a symbol anywhere in the project           |
+| `<leader>d`            | All diagnostics in the project                  |
+| `<leader>f`            | Format the file                                 |
+| `<leader>i`            | Inlay hints (parameter names, types) on / off   |
 | **Files**              |                                                 |
 | `<leader>e`            | File browser (netrw)                            |
 | `<leader>r`            | Back to the file browser                        |
-| `<leader>u`            | Undo tree                                       |
+| `<leader>u`            | Undo tree on / off (moving in it undoes/redoes) |
 | `<leader>v`            | Edit init.lua                                   |
 | `<leader>q`            | Quit window                                     |
 | **Saving**             |                                                 |
-| `<leader>ss`           | Save                                            |
-| `<leader>se` / `sd`    | Autosave on / off                               |
+| `<leader>A`            | Autosave on / off (`:w` saves by hand)          |
 | **Editing**            |                                                 |
 | `<leader>t`            | Trim trailing whitespace                        |
-| `<leader>w`            | Spell check on                                  |
+| `<leader>w`            | Spell check on / off                            |
 | **Windows**            |                                                 |
 | `<leader>+` / `-`      | Taller / shorter                                |
 | `<leader>>` / `<`      | Wider / narrower                                |
@@ -89,6 +93,5 @@ Open with `:Cheatsheet` or `<leader>?`. Leader is `Space`.
 
 | Command                       | Does                                  |
 |-------------------------------|---------------------------------------|
-| `:lua vim.lsp.buf.format()`   | Format the whole file                 |
 | `:checkhealth vim.lsp`        | Attached servers and problems         |
 | `:lsp restart`                | Restart servers (e.g. after `go.mod` changes) |
