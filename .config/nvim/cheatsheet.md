@@ -64,7 +64,6 @@ Open with `:Cheatsheet` or `<leader>?`. Leader is `Space`.
 | `grn`         | Rename symbol across the project                      |
 | `gra`         | Code actions; on a visual selection: extract function/variable |
 | `gq{motion}`  | Format (`gqq` line, `gqip` paragraph, `gggqG` file)   |
-| `grx`         | Run code lens (e.g. gopls "run test")                 |
 | `an` / `in`   | Visual mode: grow / shrink selection                  |
 
 ## Information
