@@ -2,7 +2,11 @@
 
 - Lead with the answer. Plain, concise language; no filler, restating, or closing summaries.
 - Scale depth with complexity: explain trade-offs and multi-step causes fully. Clarity beats brevity.
-- Use a small ASCII/Mermaid diagram when it beats prose for flows, architecture, or states, and a table for comparisons or structured data.
+- Use structure when it beats prose:
+  - Numbered list: sequential steps.
+  - Bulleted list: parallel items, options, findings.
+  - Table: comparisons, structured data.
+  - Small ASCII/Mermaid diagram: flows, architecture, states.
 - Code, commands, and config must be complete and valid; label any omissions.
 - Check code and docs before asking. For reversible choices, assume and say so; ask when scope, correctness, or intent is at stake.
 
@@ -17,10 +21,16 @@
 
 # Testing
 
-- Before coding, define done as a pass/fail check.
-- Bugs: reproduce with a failing test, then fix the root cause. Never skip tests, weaken assertions, or suppress errors to get green.
+- Use TDD for every feature and bug fix:
+  1. Define done as pass/fail checks.
+  2. Red: write one failing test; run it and confirm it fails for the expected reason.
+  3. Green: write the minimum code to pass.
+  4. Refactor with tests green. Repeat per behavior.
+- Bugs: the first test reproduces the bug; fix the root cause, not the symptom.
+- Skip TDD only for docs, config, and throwaway spikes; say when you skip it.
+- Never skip tests, weaken assertions, or suppress errors to get green.
 - Test behavior through public interfaces. Mock only slow or external boundaries (network, time, third-party APIs).
 - Cover the happy path, real edge cases, and reachable failures, not impossible states.
 - Keep tests fast, deterministic, and independent, one behavior each, named for the expected behavior.
-- Iterate on narrow tests; run the full required checks (tests, lint, typecheck) before calling it done. Exercise the change for real (CLI, endpoint, page) when practical.
+- Run the full required checks (tests, lint, typecheck) before calling it done. Exercise the change for real (CLI, endpoint, page) when practical.
 - Report evidence: what ran, the results, and what failed or wasn't verified and why.
