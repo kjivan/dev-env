@@ -34,3 +34,7 @@
 - Keep tests fast, deterministic, and independent, one behavior each, named for the expected behavior.
 - Run the full required checks (tests, lint, typecheck) before calling it done. Exercise the change for real (CLI, endpoint, page) when practical.
 - Report evidence: what ran, the results, and what failed or wasn't verified and why.
+
+# Git
+
+- Never add Claude-Session trailers or session links to commit messages or PR descriptions.
