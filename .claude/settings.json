@@ -46,17 +46,17 @@
   },
   "enabledPlugins": {
     "claude-md-management@claude-plugins-official": true,
-    "frontend-design@anthropic-plugin-directory": true,
-    "superpowers@anthropic-plugin-directory": true,
-    "code-review@anthropic-plugin-directory": true,
-    "context7@anthropic-plugin-directory": true,
-    "skill-creator@anthropic-plugin-directory": true,
-    "code-simplifier@anthropic-plugin-directory": true,
-    "feature-dev@anthropic-plugin-directory": true,
-    "security-guidance@anthropic-plugin-directory": true,
-    "claude-code-setup@anthropic-plugin-directory": true,
-    "pr-review-toolkit@anthropic-plugin-directory": true,
-    "chrome-devtools-mcp@claude-plugins-official": true
+    "chrome-devtools-mcp@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "code-review@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true,
+    "feature-dev@claude-plugins-official": true,
+    "pr-review-toolkit@claude-plugins-official": true,
+    "claude-code-setup@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "security-guidance@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true
   },
   "sandbox": {
     "enabled": false,
