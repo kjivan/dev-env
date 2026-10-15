@@ -3,7 +3,7 @@
 bind \co kill-line
 
 [ -d /usr/local/sbin ] && set -g PATH "/usr/local/sbin" $PATH
-[ -f /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
+[ -f /opt/homebrew/bin/brew ] && /opt/homebrew/bin/brew shellenv fish | source
 [ -d $HOME/go ] && set -gx GOPATH $HOME/go
 [ -d $HOME/.cargo/bin ] && set -gx PATH $PATH $HOME/.cargo/bin
 [ -d $HOME/.poetry/bin ] && set -gx PATH $PATH $HOME/.poetry/bin
