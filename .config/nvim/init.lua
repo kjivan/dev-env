@@ -211,7 +211,7 @@ local ts_inlay_hints = {
 vim.lsp.config("vtsls", {
   settings = { typescript = { inlayHints = ts_inlay_hints }, javascript = { inlayHints = ts_inlay_hints } },
 })
-vim.lsp.enable({ "gopls", "rust_analyzer", "vtsls", "basedpyright", "pylsp", "jdtls" })
+vim.lsp.enable({ "gopls", "rust_analyzer", "vtsls", "basedpyright", "pylsp", "jdtls", "jsonls" })
 
 -- jdtls points library definitions at jdt:// URIs; load their source from jdtls
 -- and keep jdtls attached so gd/K/grr work inside library code too
