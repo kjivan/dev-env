@@ -1,41 +1,54 @@
-# Response style
+# Priorities
 
-- Lead with the answer. Plain, concise language; no filler, repetition, or closing summaries.
+Optimize for changes that are correct, minimal, and easy for me to review and verify. Project CLAUDE.md files and repo conventions override these defaults.
+
+# Working approach
+
+- Resolve technical uncertainty from the code and docs before asking. State key assumptions and proceed with low-risk, reversible choices; ask when remaining ambiguity materially affects scope, correctness, or intent.
+- When repeated attempts fail, stop and report what you tried and what's blocking you instead of stacking workarounds.
+
+# Responses
+
+- Lead with the answer or outcome. Use plain, concise language: no filler, repetition, or recaps.
 - Scale detail to complexity; explain trade-offs and multi-step causes fully. Clarity beats brevity.
-- Use structure when clearer:
+- Use structure when clearer than prose:
   - Numbered lists for sequences; bullets for parallel items.
   - Tables for comparisons or structured data.
-  - Small ASCII/Mermaid diagrams for flows, architecture, or states.
-- Provide complete, valid code, commands, and config; label omissions.
-- Resolve technical uncertainty from relevant code/docs. State key assumptions and proceed with low-risk, reversible choices; ask when remaining ambiguity materially affects scope, correctness, or intent.
+  - Small ASCII diagrams for flows, architecture, or states.
+- Give complete, valid code, commands, and config; mark anything omitted.
 
 # Code
 
-- Preserve unrelated user changes. Integrate overlapping edits; ask only if their intent remains unclear.
-- Keep every edit tied to the request; no unrelated refactors, renames, or formatting. Remove code you orphan; flag pre-existing dead code without deleting it.
-- Make the smallest complete change; avoid speculative features, config, and abstractions.
-- Extract helpers to clarify complex logic or enforce existing architectural boundaries. Tolerate small duplication until an abstraction is clear.
-- Validate untrusted inputs at their owning boundary; reuse validation, rely on established invariants, and propagate errors when appropriate.
-- Match existing architecture and conventions; otherwise use modern idioms.
-- Use domain terminology in names. Comments explain intent, constraints, or non-obvious behavior without restating code.
-- Review the final diff and simplify where worthwhile.
+- Match existing architecture and conventions; where none exist, use modern idioms.
+- Make the smallest complete change: no unrelated refactors, renames, or formatting; no speculative features, config, or abstractions.
+- Ask before adding dependencies; prefer the standard library and existing ones.
+- Preserve changes you didn't make; integrate any that overlap your edit, asking only if their intent is unclear.
+- Remove code your change orphans; point out pre-existing dead code in your response instead of deleting it.
+- Extract a helper when it clarifies complex logic or enforces an existing architectural boundary; otherwise tolerate small duplication until the right abstraction is clear.
+- Validate untrusted input once, at the boundary that owns it; downstream, rely on established invariants instead of re-checking. Propagate errors instead of swallowing them.
+- Name things with domain terminology. Write comments only for intent, constraints, or non-obvious behavior, never to restate the code.
+- Before finishing, review the full diff and simplify where worthwhile.
 
 # Testing
 
 - Use TDD for every feature and bug fix:
-  1. Define pass/fail acceptance checks.
-  2. Red: add, update, or reuse a test; run it and verify the expected failure.
+  1. Define acceptance criteria: the observable pass/fail behavior.
+  2. Red: add, update, or reuse a test; run it and confirm it fails for the expected reason.
   3. Green: write the minimum code to pass.
-  4. Refactor with tests green; repeat per behavior.
-- For bugs, reproduce the failure in the first test and fix the root cause.
-- Establish a test baseline before behavior-preserving refactors; add characterization tests as needed. Distinguish existing failures from regressions.
-- Skip TDD only for non-behavioral docs/config changes or throwaway spikes; explain why. Behavior-changing config requires TDD.
-- Never skip tests, weaken assertions, or suppress errors to get green.
-- Test behavior through public interfaces; mock only slow or external boundaries (network, time, third-party APIs).
-- Cover happy paths, real edge cases, and reachable failures; exclude states ruled out by established invariants.
-- Keep tests fast, deterministic, and independent, one behavior each, named for the expected behavior.
-- Iterate with focused tests; finish with all checks required for the change by repo instructions and CI. Exercise changed behavior directly when practical.
-- Report commands, results, failures, and verification gaps with reasons and remaining uncertainty. Never claim unverified success.
+  4. Refactor with tests green. Repeat per behavior.
+- Skip TDD only for changes that don't alter behavior (e.g., docs, inert config), throwaway spikes, or behavior with no practical automated test (verify it directly instead); say why. If the repo has no test setup, ask before adding one.
+- For bugs, the first test must reproduce the reported failure; fix the root cause, not the symptom.
+- Before changing code, run the relevant tests to separate pre-existing failures from regressions. Before behavior-preserving refactors, add characterization tests where coverage is thin.
+- Never bypass checks to get green: no skipping tests, weakening assertions, special-casing test inputs, suppressing errors, or disabling lint/type rules or hooks (e.g., `--no-verify`, `@ts-ignore`).
+- Test behavior through public interfaces. Mock only boundaries you don't control or that are too slow for the test's level (e.g., network, time, third-party APIs).
+- Maximize value per test to keep cycles short: cover every critical use case, plus edge cases and reachable failures where realistic and consequential. Don't write tests for trivial code, already-covered behavior, or states that established invariants rule out.
+- Test each behavior at the lowest level that can verify it. Use fewer cases as test scope and runtime grow: most cases in unit tests, fewer in integration, and in system/E2E only critical journeys and wiring that lower levels can't reach.
+- Keep tests fast, deterministic, and independent; each covers one behavior and is named for it.
+- Iterate with focused tests, then run the checks CI requires (e.g., lint, typecheck, build, affected tests); run the full suite when it's fast or the change is broad. When practical, also exercise the changed behavior directly (run the CLI, hit the endpoint, load the page).
+
+# Reporting
+
+- End coding tasks with a brief verification report: commands run, results, failures, and gaps (what wasn't verified, why, and remaining uncertainty). Never claim success you haven't verified.
 
 # Git
 
