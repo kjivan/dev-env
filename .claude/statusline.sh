@@ -17,6 +17,8 @@ eval "$(jq -r '
         | sub(":00"; "") | sub("AM$"; "a") | sub("PM$"; "p")) // "") as $reset
     | "\($label) \($bar) \($p)% ↻\($reset)" | paint($p);
   @sh "model=\((.model.display_name | str) // "Unknown Model")",
+  # Absent when the model does not support the effort parameter
+  @sh "effort=\((.effort.level | str | " 💪 \(.)") // "")",
   @sh "worktree=\((.worktree.name | str) // "")",
   @sh "cost=\((.cost.total_cost_usd | numbers) // 0)",
   @sh "cwd=\((.worktree.original_cwd | str) // (.workspace.current_dir | str) // "")",
@@ -32,5 +34,5 @@ eval "$(jq -r '
 branch=$( { git symbolic-ref --short -q HEAD || git rev-parse --abbrev-ref HEAD; } 2>/dev/null) || branch="no branch"
 top=$(git -C "$cwd" rev-parse --show-toplevel 2>/dev/null) || top=${cwd%/}
 
-printf '🤖 %s | 🧠 %s | 💰 $%.2f | ⏱️ %s\n📁 %s | 🌳 %s | 🌿 %s%s' \
-  "$model" "$ctx" "$cost" "$rl" "${top##*/}" "${worktree:-no worktree}" "$branch" "$lines"
+printf '🤖 %s%s | 🧠 %s | 💰 $%.2f | ⏱️ %s\n📁 %s | 🌳 %s | 🌿 %s%s' \
+  "$model" "$effort" "$ctx" "$cost" "$rl" "${top##*/}" "${worktree:-no worktree}" "$branch" "$lines"
