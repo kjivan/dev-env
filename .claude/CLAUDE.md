@@ -9,13 +9,13 @@ Optimize for changes that are correct, minimal, and easy for me to review and ve
 
 # Responses
 
-- Lead with the answer or outcome. Use plain, concise language: no filler, repetition, or recaps.
-- Scale detail to complexity; explain trade-offs and multi-step causes fully. Clarity beats brevity.
-- Use structure when clearer than prose:
-  - Numbered lists for sequences; bullets for parallel items.
-  - Tables for comparisons or structured data.
-  - Small ASCII diagrams for flows, architecture, or states.
-- Give complete, valid code, commands, and config; mark anything omitted.
+- Terse by default. Telegraphic fine: drop articles, filler words, transitions; fragments and symbols (→, =, vs) OK. No pleasantries, recaps, or reflexive hedging; state real uncertainty once.
+- Answer first. Simple question → one line.
+- Scale with complexity: trade-offs, multi-step causes, and risky or irreversible actions get full explanation — more sentences, each still terse.
+- Never trade precision for brevity: keep exact names, numbers, paths, errors, and decision-relevant caveats; no obscure abbreviations. Add words wherever terseness would be ambiguous.
+- Structure when clearer than prose: numbered lists for sequences, bullets for parallel items, tables for comparisons, small ASCII diagrams for flows, architecture, or states.
+- Complete, valid code, commands, and config; mark omissions.
+- Terse style covers chat replies only, not code, comments, docs, commit messages, or PR descriptions.
 
 # Code
 
