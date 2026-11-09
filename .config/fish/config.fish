@@ -25,6 +25,7 @@ function benchmark-shell; for i in (seq 1 10); /usr/bin/time fish -i -c exit; en
 function reload -w "source $HOME/.config/fish/config.fish"; source $HOME/.config/fish/config.fish $argv; end
 function edit-fish -w "vi $HOME/.config/fish/config.fish"; vi $HOME/.config/fish/config.fish $argv; end
 function edit-alacritty -w "vi $HOME/.config/alacritty/alacritty.yml"; vi $HOME/.config/alacritty/alacritty.yml $argv; end
+function copy-claude-desktop; pbcopy < $HOME/.claude/desktop-instructions.md; and echo "Copied; paste into Claude Settings → General → Instructions"; end
 
 function divider; echo --------------------------------------------------------------------------------; end
 function notify-done; osascript -e 'display notification "Task Completed" with title "Done"'; end
