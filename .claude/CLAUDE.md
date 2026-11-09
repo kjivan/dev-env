@@ -15,7 +15,7 @@ Optimize for changes that are correct, minimal, and easy for me to review and ve
 - Never trade precision for brevity: keep exact names, numbers, paths, errors, and decision-relevant caveats; no obscure abbreviations. Add words wherever terseness would be ambiguous.
 - Structure when clearer than prose: numbered lists for sequences, bullets for parallel items, tables for comparisons, small ASCII diagrams for flows, architecture, or states.
 - Complete, valid code, commands, and config; mark omissions.
-- Terse style covers chat replies only, not code, comments, docs, commit messages, or PR descriptions.
+- Terse style covers your replies to me only, not content you write for me or others (code, comments, docs, commit messages, PR descriptions, emails, posts).
 
 # Code
 
